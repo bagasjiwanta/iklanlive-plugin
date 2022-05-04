@@ -8,7 +8,7 @@ add_library(${CMAKE_PROJECT_NAME} MODULE)
 # Replace `Your Name Here` with the name (yours or your organization's) you want
 # to see as the author of the plugin (in the plugin's metadata itself and in the
 # installers)
-set(PLUGIN_AUTHOR "Your Name Here")
+set(PLUGIN_AUTHOR "Iklanlive")
 
 # Replace `com.example.obs-plugin-template` with a unique Bundle ID for macOS
 # releases (used both in the installer and when submitting the installer for
@@ -23,12 +23,29 @@ set(LINUX_MAINTAINER_EMAIL "me@mymailhost.com")
 # required for visibility e.g. in Xcode or Visual Studio
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.cpp)
 
+# find_package(cpr CONFIG REQUIRED)
+# target_link_libraries(main PRIVATE cpr::cpr)
+
 include(FetchContent)
 FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
-                         GIT_TAG 6ea2dec23c3df14ac3b27b7d2d6bbff0cb7ba1b0) # The commit hash for 1.8.1. Replace with the latest from: https://github.com/libcpr/cpr/releases
+                         GIT_TAG ee7f91f5566b6279aadf6d0b1aaf56b11963f527) # The commit hash for 1.8.2. Replace with the latest from: https://github.com/libcpr/cpr/releases
 FetchContent_MakeAvailable(cpr)
 
-target_link_libraries(your_target_name PRIVATE cpr::cpr)
+target_link_libraries(iklanlive-plugin PRIVATE cpr::cpr)
+
+include(FetchContent)
+# Optional: set this to ON if your target publicly links to nlohmann_json and needs to install() 
+# set(JSON_Install ON)
+
+FetchContent_Declare(json
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent
+  GIT_PROGRESS TRUE
+  GIT_SHALLOW TRUE
+  GIT_TAG v3.10.5)
+
+FetchContent_MakeAvailable(json)
+
+target_link_libraries(iklanlive-plugin PRIVATE nlohmann_json::nlohmann_json)
 
 # /!\ TAKE NOTE: No need to edit things past this point /!\
 
@@ -97,6 +114,11 @@ endif()
 # --- End of section ---
 
 setup_plugin_target(${CMAKE_PROJECT_NAME})
+
+
+
+
+
 
 
 
