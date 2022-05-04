@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+
 builtin emulate -L zsh
 setopt EXTENDED_GLOB
 setopt PUSHD_SILENT

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16...3.21)
 
 # Change obs-plugintemplate to your plugin's name in a machine-readable format
 # (e.g.: obs-myawesomeplugin) and set
-project(obs-plugintemplate VERSION 1.0.0)
+project(iklanlive-plugin VERSION 1.0.0)
 add_library(${CMAKE_PROJECT_NAME} MODULE)
 
 # Replace `Your Name Here` with the name (yours or your organization's) you want
@@ -21,7 +21,14 @@ set(LINUX_MAINTAINER_EMAIL "me@mymailhost.com")
 
 # Add your custom source files here - header files are optional and only
 # required for visibility e.g. in Xcode or Visual Studio
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.c)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.cpp)
+
+include(FetchContent)
+FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
+                         GIT_TAG 6ea2dec23c3df14ac3b27b7d2d6bbff0cb7ba1b0) # The commit hash for 1.8.1. Replace with the latest from: https://github.com/libcpr/cpr/releases
+FetchContent_MakeAvailable(cpr)
+
+target_link_libraries(your_target_name PRIVATE cpr::cpr)
 
 # /!\ TAKE NOTE: No need to edit things past this point /!\
 
@@ -90,3 +97,15 @@ endif()
 # --- End of section ---
 
 setup_plugin_target(${CMAKE_PROJECT_NAME})
+
+
+
+
+
+
+
+
+
+
+
+
