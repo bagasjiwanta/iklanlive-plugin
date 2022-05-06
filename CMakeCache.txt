@@ -770,9 +770,6 @@ iklanlive-plugin_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 iklanlive-plugin_SOURCE_DIR:STATIC=/home/bayus/Documents/iklanlive-plugin
 
-//The directory containing a CMake configuration file for libobs.
-libobs_DIR:PATH=libobs_DIR-NOTFOUND
-
 //Value Computed by CMake
 nlohmann_json_BINARY_DIR:STATIC=/home/bayus/Documents/iklanlive-plugin/_deps/json-build
 

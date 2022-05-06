@@ -12,6 +12,15 @@ _deps/
 rundir/
 CMakeFiles/
 
+.ninja_deps
+.ninja_log
+build.ninja
+CMakeCache.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
+*.so
+
 # ignore generated files
 *.generated.*
 **/.Brewfile.lock.json

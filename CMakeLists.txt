@@ -3,7 +3,10 @@ cmake_minimum_required(VERSION 3.16...3.21)
 # Change obs-plugintemplate to your plugin's name in a machine-readable format
 # (e.g.: obs-myawesomeplugin) and set
 project(iklanlive-plugin VERSION 1.0.0)
-add_library(${CMAKE_PROJECT_NAME} MODULE)
+add_library(${CMAKE_PROJECT_NAME}
+    MODULE
+    src/dialog/LoginDialog.ui
+)
 
 # Replace `Your Name Here` with the name (yours or your organization's) you want
 # to see as the author of the plugin (in the plugin's metadata itself and in the
@@ -22,20 +25,22 @@ set(LINUX_MAINTAINER_EMAIL "me@mymailhost.com")
 # Add your custom source files here - header files are optional and only
 # required for visibility e.g. in Xcode or Visual Studio
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-          src/plugin-main.cpp
-          src/component/Menu.cpp
-          src/component/Menu.h
-          src/dialog/LoginDialog.cpp
-          src/dialog/LoginDialog.h
-          src/dialog/LoginDialog.ui
-        )
+  src/plugin-main.cpp
+  src/component/Menu.cpp
+  src/component/Menu.h
+  src/dialog/LoginDialog.cpp
+  src/dialog/LoginDialog.h
+)
 
 # find_package(cpr CONFIG REQUIRED)
 # target_link_libraries(main PRIVATE cpr::cpr)
 
 include(FetchContent)
-FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
-                         GIT_TAG ee7f91f5566b6279aadf6d0b1aaf56b11963f527) # The commit hash for 1.8.2. Replace with the latest from: https://github.com/libcpr/cpr/releases
+FetchContent_Declare(cpr
+  GIT_REPOSITORY https://github.com/libcpr/cpr.git
+  GIT_TAG ee7f91f5566b6279aadf6d0b1aaf56b11963f527
+) # The commit hash for 1.8.2. Replace with the latest from: https://github.com/libcpr/cpr/releases
+
 FetchContent_MakeAvailable(cpr)
 
 target_link_libraries(iklanlive-plugin PRIVATE cpr::cpr)
@@ -62,45 +67,52 @@ if(!OS_LINUX)
 endif()
 
 include(cmake/ObsPluginHelpers.cmake)
-find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
+# find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
+find_package(Qt5 COMPONENTS Widgets Core)
 
 configure_file(src/plugin-macros.h.in
-               ${CMAKE_SOURCE_DIR}/src/plugin-macros.generated.h)
+  ${CMAKE_SOURCE_DIR}/src/plugin-macros.generated.h)
 
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-macros.generated.h)
+target_sources(
+  ${CMAKE_PROJECT_NAME} PRIVATE src/plugin-macros.generated.h)
 
 # --- Platform-independent build settings ---
 
 if(OS_LINUX)
   target_include_directories(${CMAKE_PROJECT_NAME}
-            PRIVATE
-            ${CMAKE_SOURCE_DIR}/src /usr/include/obs
-          )
+    PRIVATE
+      ${CMAKE_SOURCE_DIR}/src
+      /usr/include/obs
+  )
 else()
   target_include_directories(${CMAKE_PROJECT_NAME}
-          PRIVATE ${CMAKE_SOURCE_DIR}/src)
+    PRIVATE
+      ${CMAKE_SOURCE_DIR}/src
+  )
 endif()
 
 
 if(!OS_LINUX)
 target_link_libraries(
   ${CMAKE_PROJECT_NAME} PRIVATE
-        OBS::libobs
-        OBS::obs-frontend-api
-        Qt::Core
-        Qt::Widgets)
+     OBS::libobs
+     OBS::obs-frontend-api
+     Qt::Core
+     Qt::Widgets)
 else()
   target_link_libraries(
-          ${CMAKE_PROJECT_NAME} PRIVATE
-          Qt::Core
-          Qt::Widgets)
+     ${CMAKE_PROJECT_NAME} PRIVATE
+     Qt::Core
+     Qt::Widgets)
 endif()
 
 set_target_properties(
   ${CMAKE_PROJECT_NAME}
-  PROPERTIES AUTOMOC ON
-             AUTOUIC ON
-             AUTORCC ON)
+  PROPERTIES
+    AUTOMOC ON
+    AUTOUIC ON
+    AUTORCC ON
+)
 
 target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
 
@@ -128,7 +140,7 @@ elseif(OS_MACOS)
   target_compile_options(
     ${CMAKE_PROJECT_NAME}
     PRIVATE -Wall -Wextra -Werror-implicit-function-declaration -stdlib=libc++
-            -fvisibility=default)
+      -fvisibility=default)
 
   set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES PREFIX "")
   # --- End of section ---

@@ -214,7 +214,7 @@ build iklanlive-plugin_autogen/timestamp iklanlive-plugin_autogen/mocs_compilati
 #############################################
 # Phony custom command for CMakeFiles/iklanlive-plugin_autogen_timestamp_deps
 
-build CMakeFiles/iklanlive-plugin_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/iklanlive-plugin_autogen_timestamp_deps: phony _deps/cpr-build/cpr/libcpr.so.1.8.2 /usr/bin/moc /usr/bin/uic || _deps/cpr-build/cpr/libcpr.so _deps/curl-build/lib/libcurl-d.so
+build CMakeFiles/iklanlive-plugin_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/iklanlive-plugin_autogen_timestamp_deps: phony _deps/cpr-build/cpr/libcpr.so.1.8.2 /usr/bin/uic /usr/bin/moc || _deps/cpr-build/cpr/libcpr.so _deps/curl-build/lib/libcurl-d.so
 
 
 #############################################

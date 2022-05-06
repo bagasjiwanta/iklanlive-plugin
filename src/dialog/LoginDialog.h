@@ -7,20 +7,19 @@
 
 #include <QDialog>
 
-namespace ui {
+namespace Ui {
   class LoginDialog;
 }
 
-class LoginDialog: public QDialog {
-  QObject
-private:
-  ui::LoginDialog* dialog;
-public:
-  LoginDialog(QWidget *parent = nullptr);
+class LoginDialog : public QDialog {
+  Q_OBJECT
 
-  LoginDialog(QWidget *parent, const Qt::WindowFlags &f, LoginDialog *dialog);
+  public:
+    LoginDialog(QWidget *parent = nullptr);
+    ~LoginDialog();
 
-  ~LoginDialog();
+  private:
+    Ui::LoginDialog *ui;
 };
 
 

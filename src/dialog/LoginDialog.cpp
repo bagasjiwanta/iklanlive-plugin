@@ -4,8 +4,9 @@
 
 #include "LoginDialog.h"
 
-LoginDialog::LoginDialog(QWidget *parent): dialog(parent) {
-
+LoginDialog::LoginDialog(QWidget *parent):
+  QDialog(parent) {
+  this->ui = new Ui::LoginDialog;
 }
 
 

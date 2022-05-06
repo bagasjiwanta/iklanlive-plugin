@@ -42,8 +42,7 @@ std::string getRandomName () {
 	return j["name"].get<std::string>();
 }
 
-bool obs_module_load(void)
-{
+bool obs_module_load(void){
 	std::string randomName = getRandomName();
   load_menu((QMainWindow*) obs_frontend_get_main_window());
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
