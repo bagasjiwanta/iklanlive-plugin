@@ -1,0 +1,1 @@
+/home/bayus/Documents/iklanlive-plugin/rundir/Debug/obs-plugins/64bit/iklanlive-plugin.so

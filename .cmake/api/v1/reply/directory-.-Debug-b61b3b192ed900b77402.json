@@ -1,0 +1,70 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"setup_plugin_target"
+		],
+		"files" : 
+		[
+			"cmake/ObsPluginHelpers.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 137,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 334,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 342,
+				"parent" : 1
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "iklanlive-plugin_Runtime",
+			"destination" : "obs-plugins/64bit",
+			"paths" : 
+			[
+				"iklanlive-plugin.so"
+			],
+			"targetId" : "iklanlive-plugin::@6890427a1f51a3e7e1df",
+			"targetIndex" : 1,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "obs_rundir",
+			"destination" : "Debug/obs-plugins/64bit",
+			"isExcludeFromAll" : true,
+			"paths" : 
+			[
+				"iklanlive-plugin.so"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}

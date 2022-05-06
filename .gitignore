@@ -7,6 +7,9 @@
 
 .vscode
 .idea
+.cmake/
+_deps/
+rundir/
 
 # ignore generated files
 *.generated.*

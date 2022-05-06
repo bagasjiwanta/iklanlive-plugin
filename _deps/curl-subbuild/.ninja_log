@@ -1,0 +1,21 @@
+# ninja log v5
+332	336	1651833830094650358	curl-populate-prefix/src/curl-populate-stamp/curl-populate-patch	d7116dcfab5a98ad
+340	344	1651833830101317025	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-build	74828aff61ddcf38
+352	357	1651833830117983692	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/CMakeFiles/curl-populate-complete	d6538838c7efb655
+352	357	1651833830117983692	curl-populate-prefix/src/curl-populate-stamp/curl-populate-done	d6538838c7efb655
+0	11	1651833829767983690	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-mkdir	3a1744ab666ddc2d
+348	352	1651833830111317026	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-test	35f8d4a16b9040c3
+332	336	1651833830094650358	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-patch	d7116dcfab5a98ad
+352	357	1651833830117983692	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-done	d6538838c7efb655
+0	11	1651833829767983690	curl-populate-prefix/src/curl-populate-stamp/curl-populate-mkdir	3a1744ab666ddc2d
+11	328	1651833830087983691	curl-populate-prefix/src/curl-populate-stamp/curl-populate-download	c166f6280cedad80
+348	352	1651833830111317026	curl-populate-prefix/src/curl-populate-stamp/curl-populate-test	35f8d4a16b9040c3
+328	332	1651833830091317025	curl-populate-prefix/src/curl-populate-stamp/curl-populate-update	b3ab2087eecd33d9
+336	340	1651833830097983692	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-configure	c0156ad9468510d8
+336	340	1651833830097983692	curl-populate-prefix/src/curl-populate-stamp/curl-populate-configure	c0156ad9468510d8
+340	344	1651833830101317025	curl-populate-prefix/src/curl-populate-stamp/curl-populate-build	74828aff61ddcf38
+352	357	1651833830117983692	CMakeFiles/curl-populate-complete	d6538838c7efb655
+11	328	1651833830087983691	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-download	c166f6280cedad80
+328	332	1651833830091317025	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-update	b3ab2087eecd33d9
+344	348	1651833830107983692	/home/bayus/Documents/iklanlive-plugin/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/curl-populate-install	cda8cba54f0621b5
+344	348	1651833830107983692	curl-populate-prefix/src/curl-populate-stamp/curl-populate-install	cda8cba54f0621b5

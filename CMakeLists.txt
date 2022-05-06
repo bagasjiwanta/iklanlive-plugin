@@ -45,12 +45,15 @@ FetchContent_Declare(json
 
 FetchContent_MakeAvailable(json)
 
-target_link_libraries(iklanlive-plugin PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(iklanlive-plugin PRIVATE
+        nlohmann_json::nlohmann_json)
 
 # /!\ TAKE NOTE: No need to edit things past this point /!\
+if(!OS_LINUX)
+  find_package(libobs REQUIRED)
+  find_package(obs-frontend-api REQUIRED)
+endif()
 
-find_package(libobs REQUIRED)
-find_package(obs-frontend-api REQUIRED)
 include(cmake/ObsPluginHelpers.cmake)
 find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
 
@@ -61,12 +64,30 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-macros.generated.h)
 
 # --- Platform-independent build settings ---
 
-target_include_directories(${CMAKE_PROJECT_NAME}
-                           PRIVATE ${CMAKE_SOURCE_DIR}/src)
+if(OS_LINUX)
+  target_include_directories(${CMAKE_PROJECT_NAME}
+            PRIVATE
+            ${CMAKE_SOURCE_DIR}/src /usr/include/obs
+          )
+else()
+  target_include_directories(${CMAKE_PROJECT_NAME}
+          PRIVATE ${CMAKE_SOURCE_DIR}/src)
+endif()
 
+
+if(!OS_LINUX)
 target_link_libraries(
-  ${CMAKE_PROJECT_NAME} PRIVATE OBS::libobs OBS::obs-frontend-api Qt::Core
-                                Qt::Widgets)
+  ${CMAKE_PROJECT_NAME} PRIVATE
+        OBS::libobs
+        OBS::obs-frontend-api
+        Qt::Core
+        Qt::Widgets)
+else()
+  target_link_libraries(
+          ${CMAKE_PROJECT_NAME} PRIVATE
+          Qt::Core
+          Qt::Widgets)
+endif()
 
 set_target_properties(
   ${CMAKE_PROJECT_NAME}
@@ -114,20 +135,3 @@ endif()
 # --- End of section ---
 
 setup_plugin_target(${CMAKE_PROJECT_NAME})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

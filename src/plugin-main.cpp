@@ -37,6 +37,7 @@ std::string getRandomName () {
 	std::string url = "https://rickandmortyapi.com/api/character/" + std::to_string(randomId);
 	cpr::Response r = cpr::Get(cpr::Url{url});
 	auto j = json::parse(r.text);
+	blog(LOG_INFO, "Haha : %s", r.text.c_str());
 	return j["name"].get<std::string>();
 }
 
@@ -44,7 +45,7 @@ bool obs_module_load(void)
 {
 	std::string randomName = getRandomName();
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
-		randomName,
+		randomName.c_str(),
 	    PLUGIN_VERSION);
 	return true;
 }
