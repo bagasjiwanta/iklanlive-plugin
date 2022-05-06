@@ -30,6 +30,12 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/component/Menu.h
   src/dialog/LoginDialog.cpp
   src/dialog/LoginDialog.h
+  src/api/Auth/User.cpp
+  src/api/Auth/User.h
+  src/api/Auth/Login.cpp
+  src/api/Auth/Login.h
+  src/api/Config/PluginConfig.cpp
+  src/api/Config/PluginConfig.h
 )
 
 # find_package(cpr CONFIG REQUIRED)

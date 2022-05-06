@@ -9,5 +9,6 @@
 #include <QMenu>
 
 void load_menu(QMainWindow* window);
+void on_login();
 
 #endif //IKLANLIVE_PLUGIN_MENU_H

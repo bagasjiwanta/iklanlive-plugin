@@ -25,6 +25,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <stdlib.h>
 #include <nlohmann/json.hpp>
 #include <string>
+#include "dialog/LoginDialog.h"
 
 using json = nlohmann::json;
 
@@ -45,6 +46,7 @@ std::string getRandomName () {
 bool obs_module_load(void){
 	std::string randomName = getRandomName();
   load_menu((QMainWindow*) obs_frontend_get_main_window());
+
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
 		randomName.c_str(),
 	    PLUGIN_VERSION);

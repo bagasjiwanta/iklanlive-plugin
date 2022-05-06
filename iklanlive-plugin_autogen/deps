@@ -32,6 +32,12 @@ iklanlive-plugin_autogen/timestamp: \
 	/home/bayus/Documents/iklanlive-plugin/CMakeLists.txt \
 	/home/bayus/Documents/iklanlive-plugin/cmake/ObsPluginHelpers.cmake \
 	/home/bayus/Documents/iklanlive-plugin/iklanlive-plugin_autogen/moc_predefs.h \
+	/home/bayus/Documents/iklanlive-plugin/src/api/Auth/Login.cpp \
+	/home/bayus/Documents/iklanlive-plugin/src/api/Auth/Login.h \
+	/home/bayus/Documents/iklanlive-plugin/src/api/Auth/User.cpp \
+	/home/bayus/Documents/iklanlive-plugin/src/api/Auth/User.h \
+	/home/bayus/Documents/iklanlive-plugin/src/api/Config/PluginConfig.cpp \
+	/home/bayus/Documents/iklanlive-plugin/src/api/Config/PluginConfig.h \
 	/home/bayus/Documents/iklanlive-plugin/src/component/Menu.cpp \
 	/home/bayus/Documents/iklanlive-plugin/src/component/Menu.h \
 	/home/bayus/Documents/iklanlive-plugin/src/dialog/LoginDialog.cpp \
@@ -427,4 +433,5 @@ iklanlive-plugin_autogen/timestamp: \
 	/usr/lib64/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake \
 	/usr/lib64/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake \
 	/usr/lib64/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake \
+	/home/bayus/Documents/iklanlive-plugin/src/dialog/LoginDialog.ui \
 	/home/bayus/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake
