@@ -21,7 +21,14 @@ set(LINUX_MAINTAINER_EMAIL "me@mymailhost.com")
 
 # Add your custom source files here - header files are optional and only
 # required for visibility e.g. in Xcode or Visual Studio
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.cpp)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+          src/plugin-main.cpp
+          src/component/Menu.cpp
+          src/component/Menu.h
+          src/dialog/LoginDialog.cpp
+          src/dialog/LoginDialog.h
+          src/dialog/LoginDialog.ui
+        )
 
 # find_package(cpr CONFIG REQUIRED)
 # target_link_libraries(main PRIVATE cpr::cpr)
@@ -114,6 +121,11 @@ endif()
 # --- End of section ---
 
 setup_plugin_target(${CMAKE_PROJECT_NAME})
+
+
+
+
+
 
 
 

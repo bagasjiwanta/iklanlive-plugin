@@ -20,7 +20,8 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <obs-module.h>
 #include <cpr/cpr.h>
 #include "plugin-macros.generated.h"
-#include <iostream>
+#include "./component/Menu.h"
+#include <obs-frontend-api.h>
 #include <stdlib.h>
 #include <nlohmann/json.hpp>
 #include <string>
@@ -30,22 +31,25 @@ using json = nlohmann::json;
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
 
-const char* BACKEND_SERVER = "";
+//const char* BACKEND_SERVER = BACKEND_SERVER;
 
 std::string getRandomName () {
 	int randomId = rand() % 100 + 1;
 	std::string url = "https://rickandmortyapi.com/api/character/" + std::to_string(randomId);
 	cpr::Response r = cpr::Get(cpr::Url{url});
 	auto j = json::parse(r.text);
+	blog(LOG_INFO, "Haha : %s", r.text.c_str());
 	return j["name"].get<std::string>();
 }
 
 bool obs_module_load(void)
 {
 	std::string randomName = getRandomName();
+  	load_menu((QMainWindow*) obs_frontend_get_main_window());
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
-		randomName,
+		randomName.c_str(),
 	    PLUGIN_VERSION);
+
 	return true;
 }
 
