@@ -9,19 +9,7 @@
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
-      "ctestCommandArgs": "",
-      "variables": [
-        {
-          "name": "libobs_DIR",
-          "value": "C:/Bagas/code/iklanlive/obs-studio/libobs/cmake",
-          "type": "PATH"
-        },
-        {
-          "name": "CMAKE_TOOLCHAIN_FILE",
-          "value": "C:\\Bagas\\program\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
-          "type": "PATH"
-        }
-      ]
+      "ctestCommandArgs": ""
     }
   ]
 }

@@ -8,6 +8,17 @@
 .vscode
 .idea
 
+/CMakeFiles/
+CMakeCache.txt
+/CMakeScripts/
+/_deps/
+/Testing/
+Makefile
+cmake_install.cmake
+compile_commands.json
+install_manifest.txt
+/logs/
+
 # ignore generated files
 *.generated.*
 **/.Brewfile.lock.json
