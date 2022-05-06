@@ -31,6 +31,8 @@ iklanlive-plugin_autogen/timestamp: \
 	/home/bayus/Documents/iklanlive-plugin/CMakeFiles/3.22.3/CMakeSystem.cmake \
 	/home/bayus/Documents/iklanlive-plugin/CMakeLists.txt \
 	/home/bayus/Documents/iklanlive-plugin/cmake/ObsPluginHelpers.cmake \
+	/home/bayus/Documents/iklanlive-plugin/src/Menu.cpp \
+	/home/bayus/Documents/iklanlive-plugin/src/Menu.h \
 	/home/bayus/Documents/iklanlive-plugin/src/plugin-macros.generated.h \
 	/home/bayus/Documents/iklanlive-plugin/src/plugin-macros.h.in \
 	/home/bayus/Documents/iklanlive-plugin/src/plugin-main.cpp \
