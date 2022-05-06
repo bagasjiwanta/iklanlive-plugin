@@ -65,13 +65,21 @@ build CMakeFiles/iklanlive-plugin.dir/src/plugin-main.cpp.o: CXX_COMPILER__iklan
   OBJECT_DIR = CMakeFiles/iklanlive-plugin.dir
   OBJECT_FILE_DIR = CMakeFiles/iklanlive-plugin.dir/src
 
-build CMakeFiles/iklanlive-plugin.dir/src/Menu.cpp.o: CXX_COMPILER__iklanlive-plugin_Debug /home/bayus/Documents/iklanlive-plugin/src/Menu.cpp || cmake_object_order_depends_target_iklanlive-plugin
+build CMakeFiles/iklanlive-plugin.dir/src/component/Menu.cpp.o: CXX_COMPILER__iklanlive-plugin_Debug /home/bayus/Documents/iklanlive-plugin/src/component/Menu.cpp || cmake_object_order_depends_target_iklanlive-plugin
   DEFINES = -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -Diklanlive_plugin_EXPORTS
-  DEP_FILE = CMakeFiles/iklanlive-plugin.dir/src/Menu.cpp.o.d
+  DEP_FILE = CMakeFiles/iklanlive-plugin.dir/src/component/Menu.cpp.o.d
   FLAGS = -g -fPIC -Wall -Wextra -fPIC
   INCLUDES = -I/home/bayus/Documents/iklanlive-plugin/iklanlive-plugin_autogen/include -I/home/bayus/Documents/iklanlive-plugin/src -I/usr/include/obs -I/home/bayus/Documents/iklanlive-plugin/_deps/cpr-src/include -I/home/bayus/Documents/iklanlive-plugin/_deps/cpr-build/cpr_generated_includes -I/home/bayus/Documents/iklanlive-plugin/_deps/curl-src/include -I/home/bayus/Documents/iklanlive-plugin/_deps/json-src/single_include -isystem /usr/include/qt -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui
   OBJECT_DIR = CMakeFiles/iklanlive-plugin.dir
-  OBJECT_FILE_DIR = CMakeFiles/iklanlive-plugin.dir/src
+  OBJECT_FILE_DIR = CMakeFiles/iklanlive-plugin.dir/src/component
+
+build CMakeFiles/iklanlive-plugin.dir/src/dialog/LoginDialog.cpp.o: CXX_COMPILER__iklanlive-plugin_Debug /home/bayus/Documents/iklanlive-plugin/src/dialog/LoginDialog.cpp || cmake_object_order_depends_target_iklanlive-plugin
+  DEFINES = -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -Diklanlive_plugin_EXPORTS
+  DEP_FILE = CMakeFiles/iklanlive-plugin.dir/src/dialog/LoginDialog.cpp.o.d
+  FLAGS = -g -fPIC -Wall -Wextra -fPIC
+  INCLUDES = -I/home/bayus/Documents/iklanlive-plugin/iklanlive-plugin_autogen/include -I/home/bayus/Documents/iklanlive-plugin/src -I/usr/include/obs -I/home/bayus/Documents/iklanlive-plugin/_deps/cpr-src/include -I/home/bayus/Documents/iklanlive-plugin/_deps/cpr-build/cpr_generated_includes -I/home/bayus/Documents/iklanlive-plugin/_deps/curl-src/include -I/home/bayus/Documents/iklanlive-plugin/_deps/json-src/single_include -isystem /usr/include/qt -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui
+  OBJECT_DIR = CMakeFiles/iklanlive-plugin.dir
+  OBJECT_FILE_DIR = CMakeFiles/iklanlive-plugin.dir/src/dialog
 
 
 # =============================================================================
@@ -81,7 +89,7 @@ build CMakeFiles/iklanlive-plugin.dir/src/Menu.cpp.o: CXX_COMPILER__iklanlive-pl
 #############################################
 # Link the shared module iklanlive-plugin.so
 
-build iklanlive-plugin.so: CXX_MODULE_LIBRARY_LINKER__iklanlive-plugin_Debug CMakeFiles/iklanlive-plugin.dir/iklanlive-plugin_autogen/mocs_compilation.cpp.o CMakeFiles/iklanlive-plugin.dir/src/plugin-main.cpp.o CMakeFiles/iklanlive-plugin.dir/src/Menu.cpp.o | _deps/cpr-build/cpr/libcpr.so.1.8.2 _deps/curl-build/lib/libcurl-d.so /usr/lib/libssl.so /usr/lib/libcrypto.so /usr/lib/libz.so /usr/lib/libssh2.so /usr/lib/libQt5Widgets.so.5.15.3 /usr/lib/libQt5Gui.so.5.15.3 /usr/lib/libQt5Core.so.5.15.3 || _deps/cpr-build/cpr/libcpr.so _deps/curl-build/lib/libcurl-d.so iklanlive-plugin_autogen iklanlive-plugin_autogen_timestamp_deps _deps/cpr-build/cpr/libcpr.so
+build iklanlive-plugin.so: CXX_MODULE_LIBRARY_LINKER__iklanlive-plugin_Debug CMakeFiles/iklanlive-plugin.dir/iklanlive-plugin_autogen/mocs_compilation.cpp.o CMakeFiles/iklanlive-plugin.dir/src/plugin-main.cpp.o CMakeFiles/iklanlive-plugin.dir/src/component/Menu.cpp.o CMakeFiles/iklanlive-plugin.dir/src/dialog/LoginDialog.cpp.o | _deps/cpr-build/cpr/libcpr.so.1.8.2 _deps/curl-build/lib/libcurl-d.so /usr/lib/libssl.so /usr/lib/libcrypto.so /usr/lib/libz.so /usr/lib/libssh2.so /usr/lib/libQt5Widgets.so.5.15.3 /usr/lib/libQt5Gui.so.5.15.3 /usr/lib/libQt5Core.so.5.15.3 || _deps/cpr-build/cpr/libcpr.so _deps/curl-build/lib/libcurl-d.so iklanlive-plugin_autogen iklanlive-plugin_autogen_timestamp_deps _deps/cpr-build/cpr/libcpr.so
   LANGUAGE_COMPILE_FLAGS = -g
   LINK_LIBRARIES = -Wl,-rpath,/home/bayus/Documents/iklanlive-plugin/_deps/cpr-build/cpr:/home/bayus/Documents/iklanlive-plugin/_deps/curl-build/lib:  _deps/cpr-build/cpr/libcpr.so.1.8.2  _deps/curl-build/lib/libcurl-d.so  -ldl  /usr/lib/libssl.so  /usr/lib/libcrypto.so  /usr/lib/libz.so  /usr/lib/libssh2.so  /usr/lib/libQt5Widgets.so.5.15.3  /usr/lib/libQt5Gui.so.5.15.3  /usr/lib/libQt5Core.so.5.15.3
   OBJECT_DIR = CMakeFiles/iklanlive-plugin.dir
@@ -190,7 +198,7 @@ build iklanlive-plugin_autogen_timestamp_deps: phony CMakeFiles/iklanlive-plugin
 #############################################
 # Utility command for iklanlive-plugin_autogen
 
-build iklanlive-plugin_autogen: phony CMakeFiles/iklanlive-plugin_autogen iklanlive-plugin_autogen/timestamp iklanlive-plugin_autogen/mocs_compilation.cpp iklanlive-plugin_autogen_timestamp_deps
+build iklanlive-plugin_autogen: phony CMakeFiles/iklanlive-plugin_autogen iklanlive-plugin_autogen/include/src/dialog/ui_LoginDialog.h iklanlive-plugin_autogen/timestamp iklanlive-plugin_autogen/mocs_compilation.cpp iklanlive-plugin_autogen_timestamp_deps
 
 
 #############################################
@@ -212,7 +220,7 @@ build CMakeFiles/iklanlive-plugin_autogen_timestamp_deps | ${cmake_ninja_workdir
 #############################################
 # Phony custom command for CMakeFiles/iklanlive-plugin_autogen
 
-build CMakeFiles/iklanlive-plugin_autogen | ${cmake_ninja_workdir}CMakeFiles/iklanlive-plugin_autogen: phony iklanlive-plugin_autogen/timestamp || _deps/cpr-build/cpr/libcpr.so _deps/curl-build/lib/libcurl-d.so iklanlive-plugin_autogen_timestamp_deps
+build CMakeFiles/iklanlive-plugin_autogen iklanlive-plugin_autogen/include/src/dialog/ui_LoginDialog.h | ${cmake_ninja_workdir}CMakeFiles/iklanlive-plugin_autogen ${cmake_ninja_workdir}iklanlive-plugin_autogen/include/src/dialog/ui_LoginDialog.h: phony iklanlive-plugin_autogen/timestamp || _deps/cpr-build/cpr/libcpr.so _deps/curl-build/lib/libcurl-d.so iklanlive-plugin_autogen_timestamp_deps
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
