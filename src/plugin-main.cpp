@@ -48,21 +48,22 @@ std::string getRandomName () {
 
 bool obs_module_load(void){
 	std::string randomName = getRandomName();
-  load_menu((QMainWindow*) obs_frontend_get_main_window());
+  Q_INIT_RESOURCE(iklanlive);
 
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
 		randomName.c_str(),
 	    PLUGIN_VERSION);
 
-  config.load_config();
-  config.getActiveUser().setIsLogged(true);
-  config.getActiveUser().setToken("BAYU TOKEN");
-  config.write_config();
 
-	return true;
+  config.load_config();
+  load_menu((QMainWindow*) obs_frontend_get_main_window());
+
+  return true;
 }
 
 void obs_module_unload()
 {
-	blog(LOG_INFO, "plugin unloaded");
+  config.write_config();
+
+  blog(LOG_INFO, "plugin unloaded");
 }

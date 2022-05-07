@@ -40,6 +40,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/exception/BaseException.h
   src/exception/ConfigException.h
   src/exception/ConfigException.cpp
+  iklanlive.qrc
 )
 
 # find_package(cpr CONFIG REQUIRED)

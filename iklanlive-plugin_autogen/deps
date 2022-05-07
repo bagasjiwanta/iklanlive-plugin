@@ -32,6 +32,7 @@ iklanlive-plugin_autogen/timestamp: \
 	/home/bayus/Documents/iklanlive-plugin/CMakeLists.txt \
 	/home/bayus/Documents/iklanlive-plugin/cmake/ObsPluginHelpers.cmake \
 	/home/bayus/Documents/iklanlive-plugin/iklanlive-plugin_autogen/moc_predefs.h \
+	/home/bayus/Documents/iklanlive-plugin/iklanlive.qrc \
 	/home/bayus/Documents/iklanlive-plugin/src/api/Auth/Login.cpp \
 	/home/bayus/Documents/iklanlive-plugin/src/api/Auth/Login.h \
 	/home/bayus/Documents/iklanlive-plugin/src/api/Auth/User.cpp \
