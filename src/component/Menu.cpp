@@ -16,6 +16,10 @@ void load_menu(QMainWindow* window) {
   QAction* login = iklanlive->addAction("Login");
   iklanlive->addAction("Logout")->setEnabled(false);
 
+  auto data = [](void* payload){
+
+  };
+
   QObject::connect(login, &QAction::triggered, on_login);
   blog(LOG_INFO, "Loaded Menu");
 }

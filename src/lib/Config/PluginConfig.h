@@ -5,7 +5,7 @@
 #ifndef IKLANLIVE_PLUGIN_PLUGINCONFIG_H
 #define IKLANLIVE_PLUGIN_PLUGINCONFIG_H
 
-#include "../Auth/User.h"
+#include "api/Auth/User.h"
 #include <util/config-file.h>
 #include <string>
 
