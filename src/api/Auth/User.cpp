@@ -1,12 +1,14 @@
-//
 // Created by bayus on 07/05/22.
 //
 
-#include "exception/ConfigException.h"
+#include "../../exception/ConfigException.h"
 #include "User.h"
 #include <obs-module.h>
+#include "../../plugin-config.h"
 
 namespace Auth {
+
+  User::User() : token(""), is_logged(false) {}
 
   void User::from_config(const config_t *config) {
     config_t * conf = const_cast<config_t *>(config);

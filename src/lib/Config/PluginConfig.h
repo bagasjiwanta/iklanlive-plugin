@@ -8,7 +8,7 @@
 #include "api/Auth/User.h"
 #include <util/config-file.h>
 #include <string>
-
+#define _HAS_STD_BYTE 0
 using namespace std;
 
 namespace Config{
