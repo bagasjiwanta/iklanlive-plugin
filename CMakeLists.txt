@@ -77,18 +77,18 @@ target_link_libraries(iklanlive-plugin PRIVATE
 
 # /!\ TAKE NOTE: No need to edit things past this point /!\
 
-if(NOT LINUX) 
+if(!OS_LINUX)
   find_package(libobs REQUIRED)
   find_package(obs-frontend-api REQUIRED)
 endif()
 
 include(cmake/ObsPluginHelpers.cmake)
 
-if(NOT LINUX) 
+if(!OS_LINUX)
   find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
 endif()
 
-if(LINUX)
+if(OS_LINUX)
   find_package(Qt5 COMPONENTS Widgets Core)
 endif()
 
@@ -100,7 +100,7 @@ target_sources(
 
 # --- Platform-independent build settings ---
 
-if(LINUX)
+if(OS_LINUX)
   target_include_directories(${CMAKE_PROJECT_NAME}
     PRIVATE
       ${CMAKE_SOURCE_DIR}/src
@@ -114,7 +114,7 @@ else()
 endif()
 
 
-if(NOT LINUX)
+if(!OS_LINUX)
 target_link_libraries(
   ${CMAKE_PROJECT_NAME} PRIVATE
      OBS::libobs

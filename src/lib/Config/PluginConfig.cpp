@@ -1,22 +1,22 @@
 //
 // Created by bayus on 07/05/22.
 //
-#include "../../plugin-macros.generated.h"
-#include "../../exception/ConfigException.h"
+#include "plugin-macros.generated.h"
+#include "exception/ConfigException.h"
 #include "./PluginConfig.h"
 #include <string>
+using namespace std;
 
 #ifdef __linux__
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
+  #include <unistd.h>
+  #include <pwd.h>
 
-struct passwd *pw = getpwuid(getuid());
-const std::string CONFIG_DIR = string(pw->pw_dir) + "/.config/iklanlive.conf";
+  struct passwd *pw = getpwuid(getuid());
+  const std::string CONFIG_DIR = string(pw->pw_dir) + "/.config/iklanlive.conf";
 
 #elif _WIN32
+  const std::string CONFIG_DIR = "/";
 
-const std::string CONFIG_DIR = "/";
 #else
   const string CONFIG_DIR = ".";
 #endif
