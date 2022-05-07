@@ -55,7 +55,7 @@ void Config::PluginConfig::load_config() {
     this->write_config();
     return;
   }else if(result != CONFIG_SUCCESS){
-    blog(LOG_ERROR, "Config can't be loaded due to unknown error. It may be caused by your permissions.");
+    blog(LOG_ERROR, "Config can't be loaded due to unknown error. It may be caused by your permissions. Config Path : %s", CONFIG_DIR.c_str());
     return;
   }
 
