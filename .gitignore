@@ -11,6 +11,7 @@
 _deps/
 rundir/
 CMakeFiles/
+Testing/
 
 .ninja_deps
 .ninja_log
