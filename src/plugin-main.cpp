@@ -19,6 +19,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 // powershell -ExecutionPolicy Bypass -File .github/scripts/Build-Windows.ps1
 #include <obs-module.h>
 #include <cpr/cpr.h>
+#include "plugin-config.h"
 #include "plugin-macros.generated.h"
 #include "component/Menu.h"
 #include <obs-frontend-api.h>
@@ -32,14 +33,16 @@ using json = nlohmann::json;
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
 
-//const char* BACKEND_SERVER = BACKEND_SERVER;
+Config::PluginConfig config;
 
 std::string getRandomName () {
 	int randomId = rand() % 100 + 1;
 	std::string url = "https://rickandmortyapi.com/api/character/" + std::to_string(randomId);
-	cpr::Response r = cpr::Get(cpr::Url{url});
+
+  cpr::Response r = cpr::Get(cpr::Url{url});
+
 	auto j = json::parse(r.text);
-	blog(LOG_INFO, "Haha : %s", r.text.c_str());
+	blog(LOG_INFO, "Haha : %s", j["location"]["name"].get<std::string>().c_str());
 	return j["name"].get<std::string>();
 }
 
@@ -50,6 +53,11 @@ bool obs_module_load(void){
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
 		randomName.c_str(),
 	    PLUGIN_VERSION);
+
+  config.load_config();
+  config.getActiveUser().setIsLogged(true);
+  config.getActiveUser().setToken("BAYU TOKEN");
+  config.write_config();
 
 	return true;
 }

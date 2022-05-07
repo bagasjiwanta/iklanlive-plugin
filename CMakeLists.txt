@@ -36,6 +36,10 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/api/Auth/Login.h
   src/api/Config/PluginConfig.cpp
   src/api/Config/PluginConfig.h
+  src/api/Config/configable.h
+  src/exception/BaseException.h
+  src/exception/ConfigException.h
+  src/exception/ConfigException.cpp
 )
 
 # find_package(cpr CONFIG REQUIRED)
