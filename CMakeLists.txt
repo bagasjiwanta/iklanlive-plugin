@@ -8,8 +8,6 @@ add_library(${CMAKE_PROJECT_NAME}
     src/dialog/LoginDialog.ui
 )
 
-set(CMAKE_PREFIX_PATH "")
-
 # Replace `Your Name Here` with the name (yours or your organization's) you want
 # to see as the author of the plugin (in the plugin's metadata itself and in the
 # installers)
@@ -53,11 +51,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # target_link_libraries(main PRIVATE cpr::cpr)
 
 include(FetchContent)
-FetchContent_Declare(cpr
-  GIT_REPOSITORY https://github.com/libcpr/cpr.git
-  GIT_TAG ee7f91f5566b6279aadf6d0b1aaf56b11963f527
-) # The commit hash for 1.8.2. Replace with the latest from: https://github.com/libcpr/cpr/releases
-
+FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git
+                         GIT_TAG ee7f91f5566b6279aadf6d0b1aaf56b11963f527) # The commit hash for 1.8.2. Replace with the latest from: https://github.com/libcpr/cpr/releases
 FetchContent_MakeAvailable(cpr)
 
 target_link_libraries(iklanlive-plugin PRIVATE cpr::cpr)
@@ -74,62 +69,34 @@ FetchContent_Declare(json
 
 FetchContent_MakeAvailable(json)
 
-target_link_libraries(iklanlive-plugin PRIVATE
-        nlohmann_json::nlohmann_json)
+target_link_libraries(iklanlive-plugin PRIVATE nlohmann_json::nlohmann_json)
 
 # /!\ TAKE NOTE: No need to edit things past this point /!\
-if(!OS_LINUX)
-  find_package(libobs REQUIRED)
-  find_package(obs-frontend-api REQUIRED)
-endif()
 
+find_package(libobs REQUIRED)
+find_package(obs-frontend-api REQUIRED)
 include(cmake/ObsPluginHelpers.cmake)
-# find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
-find_package(Qt5 COMPONENTS Widgets Core)
+find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
 
 configure_file(src/plugin-macros.h.in
-  ${CMAKE_SOURCE_DIR}/src/plugin-macros.generated.h)
+               ${CMAKE_SOURCE_DIR}/src/plugin-macros.generated.h)
 
-target_sources(
-  ${CMAKE_PROJECT_NAME} PRIVATE src/plugin-macros.generated.h)
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-macros.generated.h)
 
 # --- Platform-independent build settings ---
 
-if(OS_LINUX)
-  target_include_directories(${CMAKE_PROJECT_NAME}
-    PRIVATE
-      ${CMAKE_SOURCE_DIR}/src
-      /usr/include/obs
-  )
-else()
-  target_include_directories(${CMAKE_PROJECT_NAME}
-    PRIVATE
-      ${CMAKE_SOURCE_DIR}/src
-  )
-endif()
+target_include_directories(${CMAKE_PROJECT_NAME}
+                           PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
-
-if(!OS_LINUX)
 target_link_libraries(
-  ${CMAKE_PROJECT_NAME} PRIVATE
-     OBS::libobs
-     OBS::obs-frontend-api
-     Qt::Core
-     Qt::Widgets)
-else()
-  target_link_libraries(
-     ${CMAKE_PROJECT_NAME} PRIVATE
-     Qt::Core
-     Qt::Widgets)
-endif()
+  ${CMAKE_PROJECT_NAME} PRIVATE OBS::libobs OBS::obs-frontend-api Qt::Core
+                                Qt::Widgets)
 
 set_target_properties(
   ${CMAKE_PROJECT_NAME}
-  PROPERTIES
-    AUTOMOC ON
-    AUTOUIC ON
-    AUTORCC ON
-)
+  PROPERTIES AUTOMOC ON
+             AUTOUIC ON
+             AUTORCC ON)
 
 target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
 
@@ -157,7 +124,7 @@ elseif(OS_MACOS)
   target_compile_options(
     ${CMAKE_PROJECT_NAME}
     PRIVATE -Wall -Wextra -Werror-implicit-function-declaration -stdlib=libc++
-      -fvisibility=default)
+            -fvisibility=default)
 
   set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES PREFIX "")
   # --- End of section ---
@@ -171,6 +138,22 @@ endif()
 # --- End of section ---
 
 setup_plugin_target(${CMAKE_PROJECT_NAME})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
