@@ -6,7 +6,8 @@
 
 #include <QMenuBar>
 #include "Menu.h"
-#include <dialog/LoginDialog.h>
+// #include <dialog/LoginDialog.h>
+#include "../dialog/LoginDialog.h"
 #include <QObject>
 
 void load_menu(QMainWindow* window) {

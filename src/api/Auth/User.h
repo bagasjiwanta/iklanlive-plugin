@@ -6,7 +6,8 @@
 #define IKLANLIVE_PLUGIN_USER_H
 
 #include <string>
-#include "lib/Config/configable.h"
+// #include "lib/Config/configable.h"
+#include "../../lib/Config/configable.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ namespace Auth {
 
   class User : public configable {
   public:
+    User();
     void from_config(const config_t *config) override;
     void to_config(config_t *config) override;
 

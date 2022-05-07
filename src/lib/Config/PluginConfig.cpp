@@ -1,11 +1,9 @@
 //
 // Created by bayus on 07/05/22.
 //
-
-#include "PluginConfig.h"
-#include "plugin-macros.generated.h"
-
-#include "exception/ConfigException.h"
+#include "../../plugin-macros.generated.h"
+#include "../../exception/ConfigException.h"
+#include "./PluginConfig.h"
 
 #ifdef __linux__
 #include <unistd.h>
