@@ -8,15 +8,15 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <functional>
 using namespace std;
 
 namespace Observer{
   class Observer {
-    map<string, vector<void(*)(void*)>> db;
+    map<string, vector<function<void(void*)>>> db;
   public:
-    void subscribe(string event, void (*func)(void*));
+    void subscribe(string event, function<void(void*)> func);
     void notify(string event, void* payload = nullptr);
-    void unsubscribe(string event, void (*func)(void*));
   };
 
 }

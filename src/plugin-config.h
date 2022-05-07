@@ -5,7 +5,7 @@
 #ifndef IKLANLIVE_PLUGIN_PLUGIN_CONFIG_H
 #define IKLANLIVE_PLUGIN_PLUGIN_CONFIG_H
 
-#include "api/Config/PluginConfig.h"
+#include "lib/Config/PluginConfig.h"
 
 extern Config::PluginConfig config;
 

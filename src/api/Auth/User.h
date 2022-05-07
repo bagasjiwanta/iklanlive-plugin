@@ -6,7 +6,7 @@
 #define IKLANLIVE_PLUGIN_USER_H
 
 #include <string>
-#include "api/Config/configable.h"
+#include "lib/Config/configable.h"
 
 using namespace std;
 
