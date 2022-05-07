@@ -15,5 +15,5 @@ Observer::Observer *Observer::get_observer() {
 }
 
 void Observer::free_observer() {
-  delete obj;
+  if(obj) delete obj;
 }

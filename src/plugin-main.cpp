@@ -23,6 +23,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include "plugin-macros.generated.h"
 #include "component/Menu.h"
 #include <obs-frontend-api.h>
+#include "lib/Observer/ObserverInstance.h"
 #include <stdlib.h>
 #include <nlohmann/json.hpp>
 #include <string>
@@ -64,6 +65,7 @@ bool obs_module_load(void){
 void obs_module_unload()
 {
   config.write_config();
+  Observer::free_observer();
 
   blog(LOG_INFO, "plugin unloaded");
 }
