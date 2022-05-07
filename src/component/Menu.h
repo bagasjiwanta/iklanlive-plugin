@@ -10,5 +10,6 @@
 
 void load_menu(QMainWindow* window);
 void on_login();
+void on_logout();
 
 #endif //IKLANLIVE_PLUGIN_MENU_H

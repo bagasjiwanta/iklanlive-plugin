@@ -5,10 +5,8 @@
 #include "./Login.h"
 #include <nlohmann/json.hpp>
 #include "../../plugin-config.h"
-#include "./User.h"
-#include <util/config-file.h>
 #include <cpr/cpr.h>
-#include <iostream>
+#include "exception/AuthException.h"
 #include <string>
 #include "../../plugin-macros.generated.h"
 
@@ -18,8 +16,12 @@ Auth::User Auth::login(const std::string& email, const std::string& password) {
     // simple validation
     Auth::User user = config.getActiveUser();
     
-    if(email.length() == 0 || password.length() == 0) {
-        return user;
+    if(email.length() == 0 && password.length() == 0) {
+      throw new AuthException(INPUT_NOT_COMPLETE, "Email and password is empty");
+    }else if(email.length() == 0){
+      throw new AuthException(INPUT_NOT_COMPLETE, "Email is empty");
+    }else if(password.length() == 0){
+      throw new AuthException(INPUT_NOT_COMPLETE, "Password is empty");
     }
 
     std::string backend_url = BACKEND_URL;
@@ -40,8 +42,12 @@ Auth::User Auth::login(const std::string& email, const std::string& password) {
     );
 
     // bad request
-    if(r.status_code >= 300) {
-        return user;
+    if(r.status_code == 401){
+      throw new AuthException(CREDENTIAL_MISMATCH, "");
+    } else if(r.status_code >= 300) {
+      throw new AuthException(UNKNOWN,
+          "Error when trying to login. Error code " +
+             std::to_string(r.status_code));
     }   
 
     auto j = json::parse(r.text);

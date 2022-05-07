@@ -41,6 +41,8 @@ iklanlive-plugin_autogen/timestamp: \
 	/home/bayus/Documents/iklanlive-plugin/src/component/Menu.h \
 	/home/bayus/Documents/iklanlive-plugin/src/dialog/LoginDialog.cpp \
 	/home/bayus/Documents/iklanlive-plugin/src/dialog/LoginDialog.h \
+	/home/bayus/Documents/iklanlive-plugin/src/exception/AuthException.cpp \
+	/home/bayus/Documents/iklanlive-plugin/src/exception/AuthException.h \
 	/home/bayus/Documents/iklanlive-plugin/src/exception/BaseException.h \
 	/home/bayus/Documents/iklanlive-plugin/src/exception/ConfigException.cpp \
 	/home/bayus/Documents/iklanlive-plugin/src/exception/ConfigException.h \

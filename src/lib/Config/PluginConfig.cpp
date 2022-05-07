@@ -4,6 +4,7 @@
 #include "plugin-macros.generated.h"
 #include "exception/ConfigException.h"
 #include "./PluginConfig.h"
+#include "lib/Observer/ObserverInstance.h"
 #include <string>
 using namespace std;
 
@@ -64,6 +65,8 @@ void Config::PluginConfig::load_config() {
 
   blog(LOG_INFO, "Config Loading success");
   config_close(config);
+
+  Observer::get_observer()->notify("update-menu");
 }
 
 Auth::User &Config::PluginConfig::getActiveUser() {

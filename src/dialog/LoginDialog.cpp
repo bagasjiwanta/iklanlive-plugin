@@ -4,6 +4,10 @@
 
 #include "LoginDialog.h"
 #include "ui_LoginDialog.h"
+#include "api/Auth/Login.h"
+#include "plugin-config.h"
+#include "exception/AuthException.h"
+#include "lib/Observer/ObserverInstance.h"
 #include <QMessageBox>
 
 LoginDialog::LoginDialog(QWidget *parent):
@@ -19,5 +23,23 @@ LoginDialog::~LoginDialog() {
 }
 
 void LoginDialog::onClickLogin() {
-  QMessageBox::information(this, "Login Information", "Login Success", QMessageBox::Ok);
+  try{
+    Auth::User u = Auth::login(this->ui->username_input->text().toStdString(), this->ui->password_input->text().toStdString());
+
+    config.getActiveUser().setIsLogged(u.isLogged());
+    config.getActiveUser().setToken(u.getToken());
+
+    QMessageBox::information(this, "Login Information", "Login Success");
+    Observer::get_observer()->notify("update-menu");
+    this->close();
+  }catch(AuthException* e){
+    if(e->getError() == INPUT_NOT_COMPLETE){
+      QMessageBox::warning(this, "Login Validation", QString(e->to_string().c_str()));
+    }else if(e->getError() == CREDENTIAL_MISMATCH){
+      QMessageBox::critical(this, "Login Error", "Pair of username and password is not found");
+    }else{
+      QMessageBox::critical(this, "Login Error", QString(e->to_string().c_str()));
+    }
+  }
+
 }

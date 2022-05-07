@@ -34,16 +34,18 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/api/Auth/User.h
   src/api/Auth/Login.cpp
   src/api/Auth/Login.h
-        src/lib/Config/PluginConfig.cpp
-        src/lib/Config/PluginConfig.h
-        src/lib/Config/configable.h
+  src/lib/Config/PluginConfig.cpp
+  src/lib/Config/PluginConfig.h
+  src/lib/Config/configable.h
   src/exception/BaseException.h
   src/exception/ConfigException.h
   src/exception/ConfigException.cpp
-        src/lib/Observer/Observer.cpp
-        src/lib/Observer/Observer.h
-        src/lib/Observer/ObserverInstance.cpp
-        src/lib/Observer/ObserverInstance.h
+  src/exception/AuthException.cpp
+  src/exception/AuthException.h
+  src/lib/Observer/Observer.cpp
+  src/lib/Observer/Observer.h
+  src/lib/Observer/ObserverInstance.cpp
+  src/lib/Observer/ObserverInstance.h
   iklanlive.qrc
 )
 
