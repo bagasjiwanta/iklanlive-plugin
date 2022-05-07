@@ -4,10 +4,10 @@
 
 #include <obs-module.h>
 
-#include <QMenuBar>
-#include "Menu.h"
-// #include <dialog/LoginDialog.h>
+#include "./Menu.h"
 #include "../dialog/LoginDialog.h"
+#include <QMenuBar>
+// #include <dialog/LoginDialog.h>
 #include <QObject>
 
 void load_menu(QMainWindow* window) {

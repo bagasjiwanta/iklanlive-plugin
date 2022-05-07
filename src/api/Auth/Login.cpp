@@ -14,7 +14,7 @@
 
 using json = nlohmann::json;
 
-Auth::User Auth::login(const string& email, const string& password) {
+Auth::User Auth::login(const std::string& email, const std::string& password) {
     // simple validation
     Auth::User user = config.getActiveUser();
     

@@ -9,14 +9,14 @@
 #include <vector>
 #include <map>
 #include <functional>
-using namespace std;
+// using namespace std;
 
 namespace Observer{
   class Observer {
-    map<string, vector<function<void(void*)>>> db;
+    std::map<std::string, std::vector<std::function<void(void*)>>> db;
   public:
-    void subscribe(string event, function<void(void*)> func);
-    void notify(string event, void* payload = nullptr);
+    void subscribe(std::string event, std::function<void(void*)> func);
+    void notify(std::string event, void* payload = nullptr);
   };
 
 }

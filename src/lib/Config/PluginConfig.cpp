@@ -4,6 +4,7 @@
 #include "../../plugin-macros.generated.h"
 #include "../../exception/ConfigException.h"
 #include "./PluginConfig.h"
+#include <string>
 
 #ifdef __linux__
 #include <unistd.h>
@@ -11,11 +12,11 @@
 #include <pwd.h>
 
 struct passwd *pw = getpwuid(getuid());
-const string CONFIG_DIR = string(pw->pw_dir) + "/.config/iklanlive.conf";
+const std::string CONFIG_DIR = string(pw->pw_dir) + "/.config/iklanlive.conf";
 
 #elif _WIN32
 
-const string CONFIG_DIR = "";
+const std::string CONFIG_DIR = "/";
 #else
   const string CONFIG_DIR = ".";
 #endif

@@ -6,11 +6,11 @@
 #define IKLANLIVE_PLUGIN_BASEEXCEPTION_H
 
 #include <string>
-using namespace std;
+// using namespace std;
 
 class BaseException {
 public:
-  virtual string to_string() = 0;
+  virtual std::string to_string() = 0;
 };
 
 

@@ -76,14 +76,21 @@ target_link_libraries(iklanlive-plugin PRIVATE
         nlohmann_json::nlohmann_json)
 
 # /!\ TAKE NOTE: No need to edit things past this point /!\
-if(!OS_LINUX)
+
+if(NOT LINUX) 
   find_package(libobs REQUIRED)
   find_package(obs-frontend-api REQUIRED)
 endif()
 
 include(cmake/ObsPluginHelpers.cmake)
-# find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
-find_package(Qt5 COMPONENTS Widgets Core)
+
+if(NOT LINUX) 
+  find_qt(VERSION ${QT_VERSION} COMPONENTS Widgets Core)
+endif()
+
+if(LINUX)
+  find_package(Qt5 COMPONENTS Widgets Core)
+endif()
 
 configure_file(src/plugin-macros.h.in
   ${CMAKE_SOURCE_DIR}/src/plugin-macros.generated.h)
@@ -93,7 +100,7 @@ target_sources(
 
 # --- Platform-independent build settings ---
 
-if(OS_LINUX)
+if(LINUX)
   target_include_directories(${CMAKE_PROJECT_NAME}
     PRIVATE
       ${CMAKE_SOURCE_DIR}/src
@@ -107,7 +114,7 @@ else()
 endif()
 
 
-if(!OS_LINUX)
+if(NOT LINUX)
 target_link_libraries(
   ${CMAKE_PROJECT_NAME} PRIVATE
      OBS::libobs
@@ -169,6 +176,12 @@ endif()
 # --- End of section ---
 
 setup_plugin_target(${CMAKE_PROJECT_NAME})
+
+
+
+
+
+
 
 
 

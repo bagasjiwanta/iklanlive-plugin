@@ -30,11 +30,11 @@ namespace Auth {
     config_set_bool(config, "auth", "is_logged", this->is_logged);
   }
 
-  const string &User::getToken() const {
+  const std::string &User::getToken() const {
     return this->token;
   }
 
-  void User::setToken(const string &token) {
+  void User::setToken(const std::string &token) {
     User::token = token;
   }
 

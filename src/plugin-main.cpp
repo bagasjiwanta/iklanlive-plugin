@@ -17,6 +17,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 */
 
 // powershell -ExecutionPolicy Bypass -File .github/scripts/Build-Windows.ps1
+// #define _HAS_STD_BYTE 0
 #include <obs-module.h>
 #include <cpr/cpr.h>
 #include "plugin-config.h"
@@ -27,7 +28,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <stdlib.h>
 #include <nlohmann/json.hpp>
 #include <string>
-#include "dialog/LoginDialog.h"
+#include "./dialog/LoginDialog.h"
 
 using json = nlohmann::json;
 
@@ -36,27 +37,15 @@ OBS_MODULE_USE_DEFAULT_LOCALE(PLUGIN_NAME, "en-US")
 
 Config::PluginConfig config;
 
-std::string getRandomName () {
-	int randomId = rand() % 100 + 1;
-	std::string url = "https://rickandmortyapi.com/api/character/" + std::to_string(randomId);
-
-  cpr::Response r = cpr::Get(cpr::Url{url});
-
-	auto j = json::parse(r.text);
-	blog(LOG_INFO, "Haha : %s", j["location"]["name"].get<std::string>().c_str());
-	return j["name"].get<std::string>();
-}
-
 bool obs_module_load(void){
-	std::string randomName = getRandomName();
   Q_INIT_RESOURCE(iklanlive);
 
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
-		randomName.c_str(),
 	    PLUGIN_VERSION);
 
-
-  config.load_config();
+  if(!(_WIN32)) {
+    config.load_config();
+  }
   load_menu((QMainWindow*) obs_frontend_get_main_window());
 
   return true;
@@ -64,8 +53,11 @@ bool obs_module_load(void){
 
 void obs_module_unload()
 {
-  config.write_config();
-  Observer::free_observer();
+
+  if(!(_WIN32)) {
+    config.write_config();
+    Observer::free_observer();
+  }
 
   blog(LOG_INFO, "plugin unloaded");
 }

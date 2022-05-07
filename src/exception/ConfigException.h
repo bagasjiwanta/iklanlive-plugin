@@ -6,6 +6,7 @@
 #define IKLANLIVE_PLUGIN_CONFIGEXCEPTION_H
 
 #include "BaseException.h"
+#include <string>
 
 enum config_error_type {
   FILE_NOT_FOUND,
@@ -14,13 +15,13 @@ enum config_error_type {
 
 class ConfigException: public BaseException {
   config_error_type err;
-  string description;
+  std::string description;
 
 public:
 
-  ConfigException(config_error_type err, string description = "");
+  ConfigException(config_error_type err, std::string description = "");
 
-  string to_string() override;
+  std::string to_string() override;
 
 };
 

@@ -5,8 +5,9 @@
 #include "ConfigException.h"
 
 #include <utility>
+#include <string>
 
-string ConfigException::to_string() {
+std::string ConfigException::to_string() {
   if(this->err == FILE_NOT_FOUND){
     return "Error parsing config because file not found";
   }else if(this->err == FORMAT_ERROR){
@@ -14,7 +15,7 @@ string ConfigException::to_string() {
   }
 }
 
-ConfigException::ConfigException(config_error_type err, string description) {
+ConfigException::ConfigException(config_error_type err, std::string description) {
   this->err = err;
   this->description = std::move(description);
 }

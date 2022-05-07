@@ -8,10 +8,8 @@
 #include "./User.h"
 #include <string>
 
-using namespace std;
-
 namespace Auth{
-  User login(const string& email, const string& password);
+  User login(const std::string& email, const std::string& password);
 };
 
 #endif //IKLANLIVE_PLUGIN_LOGIN_H

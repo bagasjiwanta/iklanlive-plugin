@@ -5,11 +5,9 @@
 #ifndef IKLANLIVE_PLUGIN_PLUGINCONFIG_H
 #define IKLANLIVE_PLUGIN_PLUGINCONFIG_H
 
-#include "api/Auth/User.h"
+#include "../../api/Auth/User.h"
 #include <util/config-file.h>
 #include <string>
-#define _HAS_STD_BYTE 0
-using namespace std;
 
 namespace Config{
   class PluginConfig {
@@ -22,7 +20,7 @@ namespace Config{
     void load_config();
   };
 
-  PluginConfig load_config();
+  // PluginConfig load_config();
 }
 
 #endif //IKLANLIVE_PLUGIN_PLUGINCONFIG_H

@@ -9,7 +9,6 @@
 // #include "lib/Config/configable.h"
 #include "../../lib/Config/configable.h"
 
-using namespace std;
 
 namespace Auth {
 
@@ -19,16 +18,17 @@ namespace Auth {
     void from_config(const config_t *config) override;
     void to_config(config_t *config) override;
 
-    const string &getToken() const;
+    const std::string &getToken() const;
 
-    void setToken(const string &token);
+    void setToken(const std::string &token);
 
     bool isLogged() const;
 
     void setIsLogged(bool isLogged);
 
+
   private:
-    string token = "";
+    std::string token = "";
     bool is_logged = false;
   };
 
