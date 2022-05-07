@@ -43,9 +43,7 @@ bool obs_module_load(void){
 	blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
 	    PLUGIN_VERSION);
 
-  #ifndef _WIN32
     config.load_config();
-  #endif
 
   load_menu((QMainWindow*) obs_frontend_get_main_window());
 
@@ -55,10 +53,8 @@ bool obs_module_load(void){
 void obs_module_unload()
 {
 
-  #ifndef _WIN32
     config.write_config();
     Observer::free_observer();
-  #endif
 
   blog(LOG_INFO, "plugin unloaded");
 }

@@ -47,12 +47,15 @@ void Config::PluginConfig::write_config() {
 }
 
 void Config::PluginConfig::load_config() {
-  config_t* config;
+  config_t* config = nullptr;
   int result = config_open(&config, CONFIG_DIR.c_str(), CONFIG_OPEN_EXISTING);
 
   if(result == CONFIG_FILENOTFOUND){
     blog(LOG_INFO, "Config at %s is not available. Creating the new one.", CONFIG_DIR.c_str());
     this->write_config();
+    return;
+  }else if(result != CONFIG_SUCCESS){
+    blog(LOG_ERROR, "Config can't be loaded due to unknown error. It may be caused by your permissions.");
     return;
   }
 
