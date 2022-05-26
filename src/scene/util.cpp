@@ -10,14 +10,19 @@ const char* get_url_string(uint32_t id) {
 }
 
 obs_source_t* create_browser_source(const char* link) {
-  obs_data_t *settings = obs_data_create();
+  blog(LOG_INFO, "Creating browser source with link %s", link);
+  const char* browser = obs_module_text("color_source");
+
+  blog(LOG_INFO, "Browser id: %s", browser);
+
+  obs_data_t *settings = obs_get_source_defaults(browser);
   obs_source_t *source;
 
-  obs_data_set_string(settings, "url", link);
-
-  source = obs_source_create_private("browser_source", NULL, settings);
+  source = obs_source_create_private(browser, nullptr, settings);
 
   obs_data_release(settings);
+
+  blog(LOG_INFO, "Browser source created successfully");
 
   return source;
 }

@@ -59,6 +59,8 @@ iklanlive-plugin_autogen/timestamp: \
 	/home/bayus/Documents/iklanlive-plugin/src/scene/ads_scene.cpp \
 	/home/bayus/Documents/iklanlive-plugin/src/scene/ads_scene.h \
 	/home/bayus/Documents/iklanlive-plugin/src/scene/types.h \
+	/home/bayus/Documents/iklanlive-plugin/src/scene/util.cpp \
+	/home/bayus/Documents/iklanlive-plugin/src/scene/util.h \
 	/usr/include/alloca.h \
 	/usr/include/assert.h \
 	/usr/include/bits/atomic_wide_counter.h \

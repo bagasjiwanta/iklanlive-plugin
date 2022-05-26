@@ -2,10 +2,11 @@
 // Created by bayus on 26/05/22.
 //
 
-#include "ads_scene.h"
+#include "plugin-macros.generated.h"
 #include "types.h"
 #include <util/util.hpp>
 #include "util.h"
+#
 
 static const char *ads_source_getname(void* unused) {
   UNUSED_PARAMETER(unused);
@@ -21,13 +22,16 @@ static void ads_source_update(void* data, obs_data_t* settings) {
 }
 
 static void* ads_source_create(obs_data_t *settings, obs_source_t *source){
-  UNUSED_PARAMETER(source);
+  blog(LOG_INFO, "Creating new source");
 
   struct ads *ctx = static_cast<ads *>(bzalloc(sizeof(struct ads)));
 
   ctx->stream_id = obs_data_get_int(settings, "stream_id");
   ctx->url = get_url_string(ctx->stream_id);
   ctx->source = create_browser_source(ctx->url);
+  ctx->main_source = source;
+
+  blog(LOG_INFO, "Success creating new source");
 
   return ctx;
 }
@@ -52,7 +56,7 @@ static obs_properties_t * ads_source_properties(void* unused) {
   const int _dummy_data[] = {1,2,3,4,5};
 
   for(auto data: _dummy_data) {
-    obs_property_list_add_int(list, "stream_id", data);
+    obs_property_list_add_int(list, "Nyoba dulu" , data);
   }
 
   return props;
@@ -60,20 +64,24 @@ static obs_properties_t * ads_source_properties(void* unused) {
 
 static uint32_t ads_source_getwidth(void *data)
 {
-  UNUSED_PARAMETER(data);
-  return 800;
+  auto* ctx = static_cast<ads *>(data);
+  return obs_source_get_width(ctx->source);
 }
 
 static uint32_t ads_source_getheight(void *data)
 {
-  UNUSED_PARAMETER(data);
-  return 800;
+  auto* ctx = static_cast<ads *>(data);
+  return obs_source_get_height(ctx->source);
 }
 
 static void ads_source_render(void *data, gs_effect_t *effect)
 {
   struct ads *ctx = static_cast<ads *>(data);
-  obs_source_video_render(ctx->source);
+  auto source = obs_source_get_ref(ctx->source);
+
+  if(source){
+    obs_source_video_render(source);
+  }
 
   UNUSED_PARAMETER(effect);
 }

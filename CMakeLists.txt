@@ -45,6 +45,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/scene/ads_scene.cpp
   src/scene/ads_scene.h
   src/scene/types.h
+  src/scene/util.h
+  src/scene/util.cpp
   src/lib/Observer/Observer.cpp
   src/lib/Observer/Observer.h
   src/lib/Observer/ObserverInstance.cpp

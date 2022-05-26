@@ -11,7 +11,7 @@ using namespace std;
 
 struct ads {
   const char* url;
-  obs_source_t *source;
+  obs_source_t *source, *main_source;
   uint32_t stream_id;
 };
 
