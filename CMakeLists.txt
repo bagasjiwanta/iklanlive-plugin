@@ -42,6 +42,9 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/exception/ConfigException.cpp
   src/exception/AuthException.cpp
   src/exception/AuthException.h
+  src/scene/ads_scene.cpp
+  src/scene/ads_scene.h
+  src/scene/types.h
   src/lib/Observer/Observer.cpp
   src/lib/Observer/Observer.h
   src/lib/Observer/ObserverInstance.cpp
