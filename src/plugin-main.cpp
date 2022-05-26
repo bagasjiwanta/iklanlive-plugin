@@ -29,6 +29,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <nlohmann/json.hpp>
 #include <string>
 #include "./dialog/LoginDialog.h"
+#include "./scene/ads_scene.h"
 
 using json = nlohmann::json;
 
@@ -46,6 +47,8 @@ bool obs_module_load(void){
     config.load_config();
 
   load_menu((QMainWindow*) obs_frontend_get_main_window());
+
+  obs_register_source(&ads_info);
 
   return true;
 }

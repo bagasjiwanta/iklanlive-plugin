@@ -7,6 +7,6 @@
 
 #include <obs-module.h>
 
-struct obs_source_info ads_info;
+extern struct obs_source_info ads_info;
 
 #endif //IKLANLIVE_PLUGIN_ADS_SCENE_H
