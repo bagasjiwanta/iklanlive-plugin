@@ -51,6 +51,10 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/lib/Observer/Observer.h
   src/lib/Observer/ObserverInstance.cpp
   src/lib/Observer/ObserverInstance.h
+  src/lib/Config/FileLinuxConfig.cpp
+  src/lib/Config/FilePluginConfig.h
+  src/lib/Config/FilePluginConfig.cpp
+  src/lib/Config/FileLinuxConfig.h
   iklanlive.qrc
 )
 
