@@ -33,16 +33,14 @@ static void* ads_source_create(obs_data_t *settings, obs_source_t *source){
 
   blog(LOG_INFO, "Success creating new source");
 
-  obs_set_output_source(63, ctx->source);
-
   return ctx;
 }
 
 static void ads_source_destroy(void* data) {
   auto* ctx = static_cast<ads *>(data);
 
-  obs_set_output_source(63, nullptr);
   obs_source_release(ctx->source);
+
   bfree(ctx);
 }
 
@@ -63,6 +61,16 @@ static obs_properties_t * ads_source_properties(void* unused) {
   }
 
   return props;
+}
+
+static void ads_source_activate(void* data) {
+  auto* ctx = static_cast<ads *>(data);
+  obs_source_add_active_child(ctx->main_source, ctx->source);
+}
+
+static void ads_source_deactivate(void* data) {
+  auto* ctx = static_cast<ads *>(data);
+  obs_source_remove_active_child(ctx->main_source, ctx->source);
 }
 
 static uint32_t ads_source_getwidth(void *data)
@@ -100,6 +108,8 @@ struct obs_source_info ads_info = {
     .get_height = ads_source_getheight,
     .get_properties = ads_source_properties,
     .update = ads_source_update,
+    .activate = ads_source_activate,
+    .deactivate = ads_source_deactivate,
     .video_render = ads_source_render,
     .icon_type = OBS_ICON_TYPE_IMAGE,
 };
