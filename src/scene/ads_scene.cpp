@@ -33,12 +33,15 @@ static void* ads_source_create(obs_data_t *settings, obs_source_t *source){
 
   blog(LOG_INFO, "Success creating new source");
 
+  obs_set_output_source(63, ctx->source);
+
   return ctx;
 }
 
 static void ads_source_destroy(void* data) {
   auto* ctx = static_cast<ads *>(data);
 
+  obs_set_output_source(63, nullptr);
   obs_source_release(ctx->source);
   bfree(ctx);
 }
