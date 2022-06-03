@@ -18,6 +18,7 @@ namespace Config{
   public:
     void write_config();
     void load_config();
+    void close_config();
   };
 
   // PluginConfig load_config();

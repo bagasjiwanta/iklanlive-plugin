@@ -6,8 +6,7 @@ project(iklanlive-plugin VERSION 1.0.0)
 
 add_library(${CMAKE_PROJECT_NAME}
     MODULE
-    src/dialog/LoginDialog.ui
-)
+    src/dialog/LoginDialog.ui)
 
 # Replace `Your Name Here` with the name (yours or your organization's) you want
 # to see as the author of the plugin (in the plugin's metadata itself and in the
@@ -56,6 +55,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/lib/Config/FilePluginConfig.h
   src/lib/Config/FilePluginConfig.cpp
   src/lib/Config/FileLinuxConfig.h
+  src/lib/Config/FileWindowsConfig.cpp
+  src/lib/Config/FileWindowsConfig.h
   iklanlive.qrc
 )
 

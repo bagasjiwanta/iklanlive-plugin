@@ -14,9 +14,8 @@ using namespace std;
   FilePluginConfig* config_file = new FileLinuxConfig();
 
 #elif _WIN32
-	FilePluginConfig* config_file;
-#else
-  const string CONFIG_DIR = ".";
+	#include "./FileWindowsConfig.h"
+  FilePluginConfig* config_file = new FileWindowsConfig();
 #endif
 
 
@@ -27,20 +26,7 @@ void Config::PluginConfig::write_config() {
 
   this->activeUser.to_config(config);
 
-  int result = config_save_safe(config, ".conf", ".old.conf");
-
-  switch (result) {
-    case CONFIG_SUCCESS:
-      blog(LOG_INFO, "Config written successfully");
-      break;
-    case CONFIG_FILENOTFOUND:
-      blog(LOG_ERROR, "Failed to write config due to file not found error");
-      break;
-    default:
-      blog(LOG_ERROR, "Failed to write config due to unknown error");
-  }
-
-  config_close(config);
+  config_file->save_config();
 }
 
 void Config::PluginConfig::load_config() {
@@ -54,11 +40,14 @@ void Config::PluginConfig::load_config() {
   }
 
   blog(LOG_INFO, "Config Loading success");
-  config_close(config);
 
   Observer::get_observer()->notify("update-menu");
 }
 
 Auth::User &Config::PluginConfig::getActiveUser() {
   return activeUser;
+}
+void Config::PluginConfig::close_config() {
+	this->write_config();
+	config_file->close_config();
 }

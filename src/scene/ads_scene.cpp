@@ -24,7 +24,7 @@ static void ads_source_update(void* data, obs_data_t* settings) {
 static void* ads_source_create(obs_data_t *settings, obs_source_t *source){
   blog(LOG_INFO, "Creating new source");
 
-  struct ads *ctx = static_cast<ads *>(bzalloc(sizeof(struct ads)));
+  auto *ctx = static_cast<ads *>(bzalloc(sizeof(struct ads)));
 
   ctx->stream_id = obs_data_get_int(settings, "stream_id");
   ctx->url = get_url_string(ctx->stream_id);
@@ -87,7 +87,7 @@ static uint32_t ads_source_getheight(void *data)
 
 static void ads_source_render(void *data, gs_effect_t *effect)
 {
-  struct ads *ctx = static_cast<ads *>(data);
+  auto *ctx = static_cast<ads *>(data);
   auto source = obs_source_get_ref(ctx->source);
 
   if(source){

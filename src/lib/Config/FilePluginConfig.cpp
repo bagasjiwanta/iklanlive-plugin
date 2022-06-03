@@ -12,6 +12,7 @@ void FilePluginConfig::close_config() {
   if(this->config != nullptr) {
     this->save_config();
     config_close(this->config);
+    this->config = nullptr;
   }
 }
 
