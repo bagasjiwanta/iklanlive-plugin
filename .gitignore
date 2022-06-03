@@ -20,6 +20,9 @@ CMakeCache.txt
 CPackConfig.cmake
 CPackSourceConfig.cmake
 
+cmake*/
+out/
+
 *.so
 
 # ignore generated files

@@ -1,2 +1,0 @@
-C:/Users/bayusamudra/Documents/iklanlive-plugin/cmake-build-debug-visual-studio/rundir/Debug/obs-plugins/64bit/iklanlive-plugin.dll
-C:/Users/bayusamudra/Documents/iklanlive-plugin/cmake-build-debug-visual-studio/rundir/Debug/obs-plugins/64bit/iklanlive-plugin.pdb
