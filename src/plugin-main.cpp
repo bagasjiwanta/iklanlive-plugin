@@ -47,7 +47,7 @@ bool obs_module_load(void){
 
   source_register();
 
-  blog(LOG_INFO, "%s says : iklanlive plugin loaded successfully (version %s)",
+  blog(LOG_INFO, "Iklanlive plugin loaded successfully (version %s)",
        PLUGIN_VERSION);
 
   return true;

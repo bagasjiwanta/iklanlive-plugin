@@ -2,6 +2,8 @@
 // Created by bayusamudra on 6/3/2022.
 //
 
+#ifdef _WIN32
+
 #include "FileWindowsConfig.h"
 #include <cstdlib>
 #include <ShlObj.h>
@@ -61,3 +63,5 @@ config_t *FileWindowsConfig::open_config(){
 		return this->config;
 	}
 }
+
+#endif

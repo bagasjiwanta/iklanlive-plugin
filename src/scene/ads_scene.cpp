@@ -6,7 +6,6 @@
 #include "types.h"
 #include <util/util.hpp>
 #include "util.h"
-#
 
 static const char *ads_source_getname(void* unused) {
   UNUSED_PARAMETER(unused);
