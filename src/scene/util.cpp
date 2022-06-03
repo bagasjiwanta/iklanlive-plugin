@@ -5,7 +5,7 @@
 #include "util.h"
 
 const char* get_url_string(uint32_t id) {
-  char* res = "https://www.google.com";
+  char* res = (char*) "https://www.google.com";
   return res;
 }
 

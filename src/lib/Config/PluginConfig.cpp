@@ -14,10 +14,7 @@ using namespace std;
   FilePluginConfig* config_file = new FileLinuxConfig();
 
 #elif _WIN32
-  #include <shlobj.h<
-
-  const std::string CONFIG_DIR = "/";
-
+	FilePluginConfig* config_file;
 #else
   const string CONFIG_DIR = ".";
 #endif
