@@ -64,7 +64,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xiklanlive-plugin_Runtimex" OR NOT C
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/obs-plugins/64bit/iklanlive-plugin.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/obs-plugins/64bit/iklanlive-plugin.so"
-         OLD_RPATH "/home/bayus/Documents/iklanlive-plugin/_deps/cpr-build/cpr:/home/bayus/Documents/iklanlive-plugin/_deps/curl-build/lib:"
+         OLD_RPATH "/home/bayus/Documents/iklanlive-plugin/_deps/cpr-build/cpr:/home/bayus/Documents/obs-studio/build/UI/obs-frontend-api:/home/bayus/Documents/iklanlive-plugin/_deps/curl-build/lib:/home/bayus/Documents/obs-studio/build/libobs:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/obs-plugins/64bit/iklanlive-plugin.so")

@@ -139,6 +139,7 @@
 #define __INT_FAST32_MAX__ 0x7fffffffffffffffL
 #define __DBL_HAS_INFINITY__ 1
 #define __SIZEOF_FLOAT__ 4
+#define HAVE_OBSCONFIG_H 1
 #define __HAVE_SPECULATION_SAFE_VALUE 1
 #define __cpp_fold_expressions 201603L
 #define __DEC32_MIN_EXP__ (-94)
