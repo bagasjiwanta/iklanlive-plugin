@@ -27,6 +27,7 @@ void Config::PluginConfig::write_config() {
   this->activeUser.to_config(config);
 
   config_file->save_config();
+  blog(LOG_INFO, "Config written successfully");
 }
 
 void Config::PluginConfig::load_config() {
