@@ -22,6 +22,7 @@ CPackSourceConfig.cmake
 
 cmake*/
 out/
+*_autogen/
 
 *.so
 
