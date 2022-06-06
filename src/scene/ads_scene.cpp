@@ -16,7 +16,8 @@ static void ads_source_update(void* data, obs_data_t* settings) {
   auto* ctx = static_cast<ads *>(data);
 
   ctx->stream_id = obs_data_get_int(settings, "stream_id");
-  ctx->url = get_url_string(ctx->stream_id);
+//  ctx->url = get_url_string(ctx->stream_id);
+  ctx->url = obs_data_get_string(settings, "url");
   update_browser_source(ctx->source, ctx->url);
 }
 
@@ -47,6 +48,8 @@ static obs_properties_t * ads_source_properties(void* unused) {
   UNUSED_PARAMETER(unused);
 
   obs_properties_t *props = obs_properties_create();
+
+  obs_properties_add_text(props, "url", "Dummy URL", OBS_TEXT_DEFAULT);
 
   auto list = obs_properties_add_list(props, "stream_id",
         "Streaming id",
