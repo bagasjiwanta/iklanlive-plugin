@@ -10,5 +10,7 @@
 const char* get_url_string(uint32_t id);
 obs_source_t* create_browser_source(const char* link);
 void update_browser_source(obs_source_t *source, const char* link);
+void getClosestLivestream () ;
+bool isLivestreamStarted (int livestreamId) ;
 
 #endif //IKLANLIVE_PLUGIN_UTIL_H

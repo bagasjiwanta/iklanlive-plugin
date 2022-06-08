@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 #include "../../plugin-config.h"
 #include <cpr/cpr.h>
-#include "exception/AuthException.h"
+#include "../../exception/AuthException.h"
 #include <string>
 #include "../../plugin-macros.generated.h"
 

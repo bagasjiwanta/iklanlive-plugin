@@ -6,7 +6,7 @@
 #define IKLANLIVE_PLUGIN_PLUGINCONFIG_H
 
 #include "../../api/Auth/User.h"
-#include <util/config-file.h>
+#include "util/config-file.h"
 #include <string>
 
 namespace Config{

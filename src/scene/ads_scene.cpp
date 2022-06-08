@@ -23,9 +23,7 @@ static void ads_source_update(void* data, obs_data_t* settings) {
 
 static void* ads_source_create(obs_data_t *settings, obs_source_t *source){
   blog(LOG_INFO, "Creating new source");
-
   auto *ctx = static_cast<ads *>(bzalloc(sizeof(struct ads)));
-
   ctx->stream_id = obs_data_get_int(settings, "stream_id");
   ctx->url = get_url_string(ctx->stream_id);
   ctx->source = create_browser_source(ctx->url);
@@ -49,7 +47,7 @@ static obs_properties_t * ads_source_properties(void* unused) {
 
   obs_properties_t *props = obs_properties_create();
 
-  obs_properties_add_text(props, "url", "Dummy URL", OBS_TEXT_DEFAULT);
+  // obs_properties_add_text(props, "url", "Dummy URL", OBS_TEXT_DEFAULT);
 
   auto list = obs_properties_add_list(props, "stream_id",
         "Streaming id",
