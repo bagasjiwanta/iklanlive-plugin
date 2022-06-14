@@ -12,18 +12,21 @@ namespace Ui {
 }
 
 class LoginDialog : public QDialog {
-  Q_OBJECT
+Q_OBJECT
 
-  private slots:
-    void onClickLogin();
+private slots:
 
-  public:
-    LoginDialog(QWidget *parent = nullptr);
+  void onClickLogin();
 
-    ~LoginDialog();
+  static void *login_helper(void *ctx);
 
-  private:
-    Ui::LoginDialog *ui;
+public:
+  explicit LoginDialog(QWidget *parent = nullptr);
+
+  ~LoginDialog() override;
+
+private:
+  Ui::LoginDialog *ui;
 };
 
 
