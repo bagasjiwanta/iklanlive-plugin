@@ -101,7 +101,6 @@ void update_browser_source(obs_source_t *source, const char *link)
 
 livestream_session getClosestLivestream()
 {
-	blog(LOG_INFO, "Start");
 	std::string backend_url = BACKEND_URL;
 	std::string request_url = backend_url + "/livestreams";
 
@@ -109,41 +108,51 @@ livestream_session getClosestLivestream()
 	page["page"] = (int)1;
 
 	livestream_session x;
+	blog(LOG_INFO, "Start2");
 
 	cpr::Response r =
 		cpr::Get(cpr::Url{request_url},
 			 cpr::Bearer{config.getActiveUser().getToken().c_str()},
 			 cpr::Body{page.dump()});
+
+	if (r.error) {
+		return x;
+	}
+
 	if (r.status_code >= 400) {
 		return x;
 	}
 
-	auto j = json::parse(r.text);
+	try {
+		auto j = json::parse(r.text);
 
-	if (!j.contains("data")) {
-		return x;
-	}
-
-	j = j["data"];
-	blog(LOG_INFO, "into loop");
-
-	for (auto &i : j) {
-		if (isTimestampPassed(str_to_timestamp(i["timestamp_start"]))) {
-			continue;
-		}
-
-		if (str_tolower(i["status"].get<std::string>()) == "started") {
-
-			x.name = i["name"].get<std::string>();
-			x.utc_start_timestamp =
-				str_to_timestamp(i["timestamp_start"]);
-			x.status = i["status"].get<std::string>();
-			x.stream_id = i["id"].get<int>();
+		if (!j.contains("data")) {
 			return x;
 		}
+
+		j = j["data"];
+
+		for (auto &i : j) {
+			if (isTimestampPassed(
+				    str_to_timestamp(i["timestamp_start"]))) {
+				continue;
+			}
+
+			if (str_tolower(i["status"].get<std::string>()) ==
+			    "started") {
+
+				x.name = i["name"].get<std::string>();
+				x.utc_start_timestamp =
+					str_to_timestamp(i["timestamp_start"]);
+				x.status = i["status"].get<std::string>();
+				x.stream_id = i["id"].get<int>();
+				return x;
+			}
+		}
+		page["page"] = (int)(page["page"].get<int>() + 1);
+	} catch (json::parse_error &e) {
+		blog(LOG_ERROR, "parse error");
 	}
-	page["page"] = (int)(page["page"].get<int>() + 1);
-	blog(LOG_INFO, "end");
 	return x;
 }
 
