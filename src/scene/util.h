@@ -6,11 +6,14 @@
 #define IKLANLIVE_PLUGIN_UTIL_H
 
 #include <obs-module.h>
+#include "./types.h"
 
-const char* get_url_string(uint32_t id);
-obs_source_t* create_browser_source(const char* link);
-void update_browser_source(obs_source_t *source, const char* link);
-void getClosestLivestream () ;
-bool isLivestreamStarted (int livestreamId) ;
+const char *get_url_string(uint32_t id);
+obs_source_t *create_browser_source(const char *link);
+void update_browser_source(obs_source_t *source, const char *link);
+livestream_session getClosestLivestream();
+bool isLivestreamStarted(int livestreamId);
+bool isTimestampPassed(time_t t);
+std::string str_tolower(std::string s);
 
 #endif //IKLANLIVE_PLUGIN_UTIL_H

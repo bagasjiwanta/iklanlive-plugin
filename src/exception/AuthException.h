@@ -10,6 +10,7 @@
 enum auth_error_type {
   CREDENTIAL_MISMATCH,
   INPUT_NOT_COMPLETE,
+  UNAUTHORIZED,
   UNKNOWN
 };
 
