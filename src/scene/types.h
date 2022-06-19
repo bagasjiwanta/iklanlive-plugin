@@ -16,7 +16,7 @@ struct ads {
 };
 
 struct livestream_session {
-	std::string name = "";
+	std::string name = "https://obsproject.com/browser-source";
 	int stream_id = -1;
 	time_t utc_start_timestamp = NULL;
 	std::string status = "";

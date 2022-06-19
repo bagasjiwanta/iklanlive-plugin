@@ -15,5 +15,6 @@ livestream_session getClosestLivestream();
 bool isLivestreamStarted(int livestreamId);
 bool isTimestampPassed(time_t t);
 std::string str_tolower(std::string s);
+bool compare_start_ts(livestream_session s1, livestream_session s2);
 
 #endif //IKLANLIVE_PLUGIN_UTIL_H

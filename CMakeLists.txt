@@ -57,6 +57,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
   src/lib/Config/FileLinuxConfig.h
   src/lib/Config/FileWindowsConfig.cpp
   src/lib/Config/FileWindowsConfig.h
+  src/exception/LivestreamException.h
+  src/exception/LivestreamException.cpp
   iklanlive.qrc
 )
 
@@ -162,6 +164,32 @@ endif()
 # --- End of section ---
 
 setup_plugin_target(${CMAKE_PROJECT_NAME})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

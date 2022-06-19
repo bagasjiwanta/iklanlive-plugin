@@ -7,6 +7,8 @@
 #include <util/util.hpp>
 #include "util.h"
 #include "obs-properties.h"
+#include "../exception/AuthException.h"
+#include "../exception/LivestreamException.h"
 
 static const char *ads_source_getname(void *unused)
 {
@@ -17,8 +19,16 @@ static const char *ads_source_getname(void *unused)
 static void ads_source_update(void *data, obs_data_t *settings)
 {
 	auto *ctx = static_cast<ads *>(data);
-	livestream_session l = getClosestLivestream();
-	blog(LOG_INFO, "Closest Livestream id : %d", l.stream_id);
+
+	livestream_session l;
+
+	try {
+		l = getClosestLivestream();
+		blog(LOG_INFO, "Closest Livestream id : %d", l.stream_id);
+
+	} catch (LivestreamException *e) {
+	} catch (AuthException *e) {
+	}
 	ctx->stream_id = obs_data_get_int(settings, "stream_id");
 	ctx->url = obs_data_get_string(settings, "url");
 	update_browser_source(ctx->source, ctx->url);

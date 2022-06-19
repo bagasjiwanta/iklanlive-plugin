@@ -11,6 +11,9 @@
 #include <string>
 #include "./types.h"
 #include "time.h"
+#include <vector>
+#include "../exception/AuthException.h"
+#include "../exception/LivestreamException.h"
 
 using json = nlohmann::json;
 
@@ -18,7 +21,7 @@ std::time_t str_to_timestamp(const std::string &str)
 {
 	struct std::tm tm;
 	std::istringstream ss(str.c_str());
-	ss >> std::get_time(&tm, "%Y-%m-%dT%H:%M:%S");
+	ss >> std::get_time(&tm, "%Y-%m-%d %H:%M:%S");
 	if (ss.fail()) {
 		// throw exception
 		return 0;
@@ -30,6 +33,7 @@ std::time_t str_to_timestamp(const std::string &str)
 
 bool isTimestampPassed(time_t t)
 {
+	// blog(LOG_INFO, "time : %lld, now : %lld", t, time(NULL));
 	return std::difftime(t, time(NULL)) < 0;
 }
 
@@ -107,53 +111,79 @@ livestream_session getClosestLivestream()
 	json page;
 	page["page"] = (int)1;
 
-	livestream_session x;
-	blog(LOG_INFO, "Start2");
-
+	std::vector<livestream_session> lv;
 	cpr::Response r =
 		cpr::Get(cpr::Url{request_url},
 			 cpr::Bearer{config.getActiveUser().getToken().c_str()},
 			 cpr::Body{page.dump()});
 
 	if (r.error) {
-		return x;
+		throw new LivestreamException(UNKNOWN_LIVESTREAM_ERROR,
+					      "Error in retrieving data");
 	}
 
-	if (r.status_code >= 400) {
-		return x;
+	if (r.status_code == 403) {
+		throw new AuthException(UNAUTHORIZED, "Sign in again");
 	}
-
 	try {
 		auto j = json::parse(r.text);
 
 		if (!j.contains("data")) {
-			return x;
+			throw new LivestreamException(
+				INVALID_FORMAT, "Invalid response format");
 		}
 
 		j = j["data"];
 
 		for (auto &i : j) {
-			if (isTimestampPassed(
-				    str_to_timestamp(i["timestamp_start"]))) {
+			// blog(LOG_INFO, "ts : %s",
+			//      i["timestamp_end"].get<std::string>().c_str());
+			// if (i["timestamp_end"].get<std::string>() == "null") {
+			// 	continue;
+			// }
+
+			blog(LOG_INFO, "name : %s",
+			     i["name"].get<std::string>().c_str());
+
+			if (isTimestampPassed(str_to_timestamp(
+				    i["timestamp_end"].get<std::string>()))) {
 				continue;
 			}
+			blog(LOG_INFO, "guard2");
 
-			if (str_tolower(i["status"].get<std::string>()) ==
-			    "started") {
+			livestream_session l;
+			l.name = i["name"].get<std::string>();
+			l.utc_start_timestamp =
+				str_to_timestamp(i["timestamp_start"]);
+			l.status = i["status"].get<std::string>();
+			l.stream_id = i["id"].get<int>();
+			lv.push_back(l);
 
-				x.name = i["name"].get<std::string>();
-				x.utc_start_timestamp =
-					str_to_timestamp(i["timestamp_start"]);
-				x.status = i["status"].get<std::string>();
-				x.stream_id = i["id"].get<int>();
-				return x;
-			}
+			blog(LOG_INFO, "id : %d, name : %s, ts : %s",
+			     i["id"].get<int>(),
+			     i["name"].get<std::string>().c_str(),
+			     i["timestamp_end"].get<std::string>().c_str());
 		}
 		page["page"] = (int)(page["page"].get<int>() + 1);
 	} catch (json::parse_error &e) {
 		blog(LOG_ERROR, "parse error");
+		throw new LivestreamException(PARSE_ERROR,
+					      "Error in parsing data");
 	}
-	return x;
+
+	if (lv.empty()) {
+		throw new LivestreamException(
+			NO_AVAILABLE_LIVESTREAM,
+			"No available livestream to display ads");
+	}
+
+	std::sort(lv.begin(), lv.end(), compare_start_ts);
+	return lv.at(0);
+}
+
+bool compare_start_ts(livestream_session s1, livestream_session s2)
+{
+	return s1.utc_start_timestamp < s2.utc_start_timestamp;
 }
 
 bool isLivestreamStarted(int livestreamId)

@@ -24,7 +24,9 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 
 #include <obs-module.h>
 
-#define blog(level, msg, ...) blog(level, "[" PLUGIN_NAME "] " msg, ##__VA_ARGS__)
-#define BACKEND_URL "https://api.iklanlive.com"
+#define blog(level, msg, ...) \
+	blog(level, "[" PLUGIN_NAME "] " msg, ##__VA_ARGS__)
+// #define BACKEND_URL "https://api.iklanlive.com"
+#define BACKEND_URL "http://localhost:8080"
 
 #endif // PLUGINNAME_H
