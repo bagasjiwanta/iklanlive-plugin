@@ -24,13 +24,11 @@ static void ads_source_update(void *data, obs_data_t *settings)
 
 	try {
 		l = getClosestLivestream();
-		blog(LOG_INFO, "Closest Livestream id : %d", l.stream_id);
-
 	} catch (LivestreamException *e) {
 	} catch (AuthException *e) {
 	}
-	ctx->stream_id = obs_data_get_int(settings, "stream_id");
-	ctx->url = obs_data_get_string(settings, "url");
+	ctx->stream_id = l.stream_id;
+	ctx->url = get_url_string(l.stream_id);
 	update_browser_source(ctx->source, ctx->url);
 }
 
@@ -39,9 +37,19 @@ static void *ads_source_create(obs_data_t *settings, obs_source_t *source)
 	blog(LOG_INFO, "Creating new source");
 	auto *ctx = static_cast<ads *>(bzalloc(sizeof(struct ads)));
 	ctx->stream_id = obs_data_get_int(settings, "stream_id");
-	ctx->url = get_url_string(ctx->stream_id);
+
+	livestream_session l;
+
+	try {
+		l = getClosestLivestream();
+	} catch (LivestreamException *e) {
+	} catch (AuthException *e) {
+	}
+
+	// blog(LOG_INFO, "stream id : %d", ctx->stream_id);
+	ctx->url = get_url_string(l.stream_id);
 	ctx->source = create_browser_source(ctx->url);
-	ctx->main_source = source;
+	ctx->main_source = ctx->source;
 	blog(LOG_INFO, "Success creating new source");
 
 	return ctx;

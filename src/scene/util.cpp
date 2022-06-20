@@ -54,22 +54,30 @@ const char *get_url_string(uint32_t id)
 		cpr::Get(cpr::Url{request_url},
 			 cpr::Bearer{config.getActiveUser().getToken()});
 
-	if (r.status_code == 401) {
-		return "";
+	if (r.error) {
+		throw new LivestreamException(
+			UNKNOWN_LIVESTREAM_ERROR,
+			"Error while fetching stream url");
 	}
 
-	// auto j = json::parse(r.text);
+	if (r.status_code == 200) {
+		auto j = json::parse(r.text);
 
-	// if (j.contains("data") && j["data"].contains("stream_token") &&
-	//     j["data"]["stream_token"].is_string()) {
-	// 	std::string stream_url =
-	// 		"https://iklanlive.com/embedd/" +
-	// 		j["data"]["stream_token"].get<std::string>();
-	// 	return stream_url.c_str();
-	// }
-	return "https://google.com/";
+		if (j.contains("data") && j["data"].contains("stream_token") &&
+		    j["data"]["stream_token"].is_string()) {
+			std::string stream_url =
+				"https://localhost:8080/embedd/" +
+				j["data"]["stream_token"].get<std::string>();
+			blog(LOG_INFO, "stream url : %s", stream_url.c_str());
+			return stream_url.c_str();
+		}
+	}
 
-	// return "";
+	if (r.status_code == 403 || r.status_code == 401) {
+		throw new AuthException(UNAUTHORIZED, "Login Again");
+	}
+
+	return "https://obsproject.com/browser-source";
 }
 
 obs_source_t *create_browser_source(const char *link)
@@ -136,33 +144,29 @@ livestream_session getClosestLivestream()
 		j = j["data"];
 
 		for (auto &i : j) {
-			// blog(LOG_INFO, "ts : %s",
-			//      i["timestamp_end"].get<std::string>().c_str());
-			// if (i["timestamp_end"].get<std::string>() == "null") {
-			// 	continue;
-			// }
-
-			blog(LOG_INFO, "name : %s",
-			     i["name"].get<std::string>().c_str());
-
-			if (isTimestampPassed(str_to_timestamp(
+			if (i["timestamp_end"].is_string() &&
+			    isTimestampPassed(str_to_timestamp(
 				    i["timestamp_end"].get<std::string>()))) {
 				continue;
 			}
-			blog(LOG_INFO, "guard2");
+
+			if (i["timestamp_start"].is_null()) {
+				continue;
+			}
 
 			livestream_session l;
-			l.name = i["name"].get<std::string>();
+			if (i["name"].is_string()) {
+				l.name = i["name"].get<std::string>();
+			}
+
 			l.utc_start_timestamp =
 				str_to_timestamp(i["timestamp_start"]);
 			l.status = i["status"].get<std::string>();
 			l.stream_id = i["id"].get<int>();
 			lv.push_back(l);
 
-			blog(LOG_INFO, "id : %d, name : %s, ts : %s",
-			     i["id"].get<int>(),
-			     i["name"].get<std::string>().c_str(),
-			     i["timestamp_end"].get<std::string>().c_str());
+			// blog(LOG_INFO, "info. id : %d, ts : %lld", l.stream_id,
+			//      l.utc_start_timestamp);
 		}
 		page["page"] = (int)(page["page"].get<int>() + 1);
 	} catch (json::parse_error &e) {
@@ -178,6 +182,7 @@ livestream_session getClosestLivestream()
 	}
 
 	std::sort(lv.begin(), lv.end(), compare_start_ts);
+	blog(LOG_INFO, "most recent : %d", lv.at(0).stream_id);
 	return lv.at(0);
 }
 
