@@ -49,7 +49,7 @@ static void *ads_source_create(obs_data_t *settings, obs_source_t *source)
 	// blog(LOG_INFO, "stream id : %d", ctx->stream_id);
 	ctx->url = get_url_string(l.stream_id);
 	ctx->source = create_browser_source(ctx->url);
-	ctx->main_source = ctx->source;
+	ctx->main_source = source;
 	blog(LOG_INFO, "Success creating new source");
 
 	return ctx;

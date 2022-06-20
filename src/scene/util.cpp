@@ -66,7 +66,7 @@ const char *get_url_string(uint32_t id)
 		if (j.contains("data") && j["data"].contains("stream_token") &&
 		    j["data"]["stream_token"].is_string()) {
 			std::string stream_url =
-				"https://localhost:8080/embedd/" +
+				"http://localhost:3000/embedd/" +
 				j["data"]["stream_token"].get<std::string>();
 			blog(LOG_INFO, "stream url : %s", stream_url.c_str());
 			return stream_url.c_str();
@@ -88,6 +88,7 @@ obs_source_t *create_browser_source(const char *link)
 	blog(LOG_INFO, "Browser id: %s", browser);
 
 	obs_data_t *settings = obs_get_source_defaults(browser);
+	obs_data_set_string(settings, "url", link);
 	obs_source_t *source;
 
 	//  obs_data_set_int(settings, "color", 0xF47C7Cff);
@@ -191,6 +192,10 @@ bool compare_start_ts(livestream_session s1, livestream_session s2)
 	return s1.utc_start_timestamp < s2.utc_start_timestamp;
 }
 
+/* 
+
+For future use 
+
 bool isLivestreamStarted(int livestreamId)
 {
 	if (!config.getActiveUser().isLogged()) {
@@ -219,3 +224,5 @@ bool isLivestreamStarted(int livestreamId)
 
 	return false;
 };
+
+*/
