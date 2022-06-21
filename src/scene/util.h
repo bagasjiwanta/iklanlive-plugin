@@ -9,8 +9,9 @@
 #include "./types.h"
 
 const char *get_url_string(uint32_t id);
-obs_source_t *create_browser_source(const char *link);
-void update_browser_source(obs_source_t *source, const char *link);
+obs_source_t *create_browser_source(const char *link, int width, int height);
+void update_browser_source(obs_source_t *source, const char *link, int width,
+			   int height);
 livestream_session getClosestLivestream();
 bool isLivestreamStarted(int livestreamId);
 bool isTimestampPassed(time_t t);
